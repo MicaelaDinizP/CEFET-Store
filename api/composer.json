@@ -1,0 +1,20 @@
+{
+    "name": "2023-1-pis-g3/api",
+    "autoload": {
+        "psr-4": {
+            "20231PisG3\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MicaelaPaes",
+            "email": "micaelahimura@hotmail.com"
+        }
+    ],
+    "scripts": {
+        "test":"kahlan"
+    },
+    "require-dev": {
+        "kahlan/kahlan": "^5.2"
+    }
+}
