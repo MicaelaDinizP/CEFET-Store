@@ -3,7 +3,7 @@
 use Kahlan\Code\Code;
 
 require_once("vendor/autoload.php");
-require_once("./app/conexao-pdo.php");
+require_once("./src/conexao-pdo.php");
 
 describe("conexaoPDO", function(){
     it("deve criar a conexão corretamente ao enviar o nome cefet-shop.", function() {
