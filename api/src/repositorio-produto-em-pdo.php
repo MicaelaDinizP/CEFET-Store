@@ -9,14 +9,14 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
         $this->pdo = $pdo;
     }
 
-    public function obterPagina($pagina, $qtdRegistros){
-        $sql = "SELECT * FROM produto LIMIT :pag  OFFSET :qtdRegistros";
+    public function obterPagina($limite, $deslocamento){
+        $sql = "SELECT id, descricao, precoDeVenda FROM produto LIMIT :limite  OFFSET :deslocamento";
         $produtos = null;
         try{
             $ps = $this->pdo->prepare($sql);
             $ps->setFetchMode(PDO::FETCH_ASSOC);
-            $ps->bindParam(':pag', $pagina, PDO::PARAM_INT);
-            $ps->bindParam(':qtdRegistros', $qtdRegistros, PDO::PARAM_INT);
+            $ps->bindParam(':limite', $limite, PDO::PARAM_INT);
+            $ps->bindParam(':deslocamento', $deslocamento, PDO::PARAM_INT);
             $ps->execute();
             if( $ps->rowCount()<0 ){
                 return null;
@@ -24,7 +24,7 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtos[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    null ,null, null, null, intval($d['id']) ); 
+                    null ,null, null, null, null, intval($d['id']) ); 
             }
             return $produtos;
 
@@ -34,7 +34,5 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
     }
 
 }
-
-
 
 ?>
