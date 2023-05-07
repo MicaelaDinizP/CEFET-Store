@@ -1,5 +1,5 @@
 <?php
-class Produto{
+class Produto implements JsonSerializable{
     private $id;
     private $descricao;
     private $precoDeVenda;
@@ -83,6 +83,10 @@ class Produto{
     
     public function setCategoria($categoria) {
         $this->categoria = $categoria;
+    }
+
+    public function jsonSerialize() {
+        return get_object_vars( $this );
     }
 }
 
