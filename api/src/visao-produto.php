@@ -17,6 +17,13 @@ class VisaoProduto{
         return json_encode( $mensagem );
     }
 
+    public function obterPaginaDesejada(){
+        if( isset( $_GET['pag'] ) ) {
+            return intval( $_GET['pag'] );
+        }
+        return 1;
+    }
+
 }
 ?>
 
