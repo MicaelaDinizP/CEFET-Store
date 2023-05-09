@@ -87,28 +87,28 @@ class Produto implements JsonSerializable{
 
     public function jsonSerialize() {
         $json = [];
-        if (!isset($this->id) || $this->id !== 0 ) {
+        if (isset($this->id) || $this->id !== 0 ) {
             $json['id'] = $this->id;
         }
-        if (!isset($this->descricao)) {
+        if (isset($this->descricao)) {
             $json['descricao'] = $this->descricao;
         }
-        if (!isset($this->precoDeVenda) ) {
+        if (isset($this->precoDeVenda) ) {
             $json['precoDeVenda'] = $this->precoDeVenda;
         }
-        if (!isset($this->lancamento)) {
+        if (isset($this->lancamento)) {
             $json['lancamento'] = $this->lancamento;
         }
-        if (!isset($this->detalhes)) {
+        if (isset($this->detalhes)) {
             $json['detalhes'] = $this->detalhes;
         }
-        if (!isset($this->quantidade)) {
+        if (isset($this->quantidade)) {
             $json['quantidade'] = $this->quantidade;
         }
-        if (!isset($this->taxaDesconto) ) {
+        if (isset($this->taxaDesconto) ) {
             $json['taxaDesconto'] = $this->taxaDesconto;
         }
-        if (!isset($this->categoria) ) {
+        if (isset($this->categoria) ) {
             $json['categoria'] = $this->categoria;
         }
         return $json;
