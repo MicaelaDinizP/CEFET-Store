@@ -1,13 +1,13 @@
 <?php
 class Produto implements JsonSerializable{
     private $id;
-    private $descricao;
-    private $precoDeVenda;
-    private $lancamento;
-    private $detalhes;
-    private $quantidade;
-    private $taxaDesconto;
-    private $categoria;
+    private $descricao = null;
+    private $precoDeVenda = null;
+    private $lancamento = null;
+    private $detalhes = null;
+    private $quantidade = null;
+    private $taxaDesconto = null;
+    private $categoria = null;
     
     public function __construct( $descricao, $precoDeVenda, $lancamento, $detalhes, $quantidade,
                                      $taxaDesconto, $categoria, $id = 0) {
@@ -86,7 +86,33 @@ class Produto implements JsonSerializable{
     }
 
     public function jsonSerialize() {
-        return get_object_vars( $this );
+        $json = [];
+        if (!isset($this->id) || $this->id !== 0 ) {
+            $json['id'] = $this->id;
+        }
+        if (!isset($this->descricao)) {
+            $json['descricao'] = $this->descricao;
+        }
+        if (!isset($this->precoDeVenda) ) {
+            $json['precoDeVenda'] = $this->precoDeVenda;
+        }
+        if (!isset($this->lancamento)) {
+            $json['lancamento'] = $this->lancamento;
+        }
+        if (!isset($this->detalhes)) {
+            $json['detalhes'] = $this->detalhes;
+        }
+        if (!isset($this->quantidade)) {
+            $json['quantidade'] = $this->quantidade;
+        }
+        if (!isset($this->taxaDesconto) ) {
+            $json['taxaDesconto'] = $this->taxaDesconto;
+        }
+        if (!isset($this->categoria) ) {
+            $json['categoria'] = $this->categoria;
+        }
+        return $json;
+        //return get_object_vars( $this );
     }
 }
 
