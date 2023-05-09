@@ -31,7 +31,7 @@ class ControladoraProduto{
     }
 
     public function calcularDeslocamento( $pagina ){
-        $deslocamento = REGISTROS_POR_PAGINA * $pagina;
+        $deslocamento = REGISTROS_POR_PAGINA * ( $pagina - 1 );
         return $deslocamento;
     }
 
