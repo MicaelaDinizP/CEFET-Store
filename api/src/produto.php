@@ -8,9 +8,11 @@ class Produto implements JsonSerializable{
     private $quantidade = null;
     private $taxaDesconto = null;
     private $categoria = null;
+    private $imagem = null;
+    private $precoDesconto = null;
     
     public function __construct( $descricao, $precoDeVenda, $lancamento, $detalhes, $quantidade,
-                                     $taxaDesconto, $categoria, $id = 0) {
+                                     $taxaDesconto, $categoria, $imagem, $id = 0) {
         $this->id = $id;
         $this->descricao = $descricao;
         $this->precoDeVenda = $precoDeVenda;
@@ -19,8 +21,12 @@ class Produto implements JsonSerializable{
         $this->quantidade = $quantidade;
         $this->taxaDesconto = $taxaDesconto;
         $this->categoria = $categoria;
+        $this->imagem = $imagem;
+       // $this->calcularPrecoComDesconto();
     }
     
+
+//getters e setters -----
     public function getId() {
         return $this->id;
     }
@@ -32,7 +38,7 @@ class Produto implements JsonSerializable{
     public function getDescricao() {
         return $this->descricao;
     }
-    
+
     public function setDescricao($descricao) {
         $this->descricao = $descricao;
     }
@@ -43,6 +49,7 @@ class Produto implements JsonSerializable{
     
     public function setPrecoDeVenda($precoDeVenda) {
         $this->precoDeVenda = $precoDeVenda;
+       // $this->calcularPrecoComDesconto();
     }
     
     public function getLancamento() {
@@ -75,6 +82,7 @@ class Produto implements JsonSerializable{
     
     public function setTaxaDesconto($taxaDesconto) {
         $this->taxaDesconto = $taxaDesconto;
+      //  $this->calcularPrecoComDesconto();
     }
     
     public function getCategoria() {
@@ -84,7 +92,19 @@ class Produto implements JsonSerializable{
     public function setCategoria($categoria) {
         $this->categoria = $categoria;
     }
+    
+	public function getImagem() {
+		return $this->imagem;
+	}
+	
+	public function setImagem($imagem) {
+		$this->imagem = $imagem;
+	}
+    public function getPrecoDesconto() {
+		return $this->precoDesconto;
+	}
 
+// ... -----
     public function jsonSerialize() {
         $json = [];
         if (isset($this->id) || $this->id !== 0 ) {
@@ -110,6 +130,12 @@ class Produto implements JsonSerializable{
         }
         if (isset($this->categoria) ) {
             $json['categoria'] = $this->categoria;
+        }
+        if (isset($this->imagem) ) {
+            $json['imagem'] = $this->imagem;
+        }
+        if ( isset($this->precoDesconto)) {
+            $json['precoDesconto'] = $this->precoDesconto;
         }
         return $json;
         //return get_object_vars( $this );
