@@ -27,6 +27,7 @@ class Produto implements JsonSerializable{
     private function calcularPrecoComDesconto(){
         if( $this->taxaDesconto == null || $this->taxaDesconto <= 0 ){
                 $this->precoDesconto =  $this->precoDeVenda;
+                $this->taxaDesconto = 0;
                 return;
         }
         $this->precoDesconto = $this->precoDeVenda * (1 - ($this->taxaDesconto / 100));
