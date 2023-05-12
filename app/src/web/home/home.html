@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.css" />
+    <title>CEFET Shop</title>
+    <link
+      rel="stylesheet"
+      href="https://code.getmdl.io/1.3.0/material.indigo-amber.min.css"
+    />
+    <script src="/node_modules/material-design-lite/material.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">CEFET Shop</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="/#/login">Login</a>
+            <a
+              class="mdl-badge mdl-badge--overlap"
+              data-badge="1"
+              href="/#/carrinho"
+              ><button
+                class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
+              >
+                <i class="material-icons white">shopping_cart</i>
+              </button>
+            </a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">CEFET Shop</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/#/login">Login</a>
+          <a
+            class="mdl-badge mdl-badge--overlap"
+            data-badge="1"
+            href="/#/carrinho"
+            ><button
+              class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
+            >
+              <i class="material-icons white">shopping_cart</i>
+            </button>
+          </a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="produtos">
+          <div class="mdl-card demo-card-square mdl-shadow--2dp produto">
+            <!-- Link no botão de detalhes, na foto ou na descrição -->
+            <div class="mdl-card__media">
+              <a href="#/product/1">
+                <img
+                  src="../../images/casaco-teste.jpg"
+                  width="220"
+                  height="140"
+                  border="0"
+                  alt="Product 1"
+                  style="padding: 20px"
+                />
+              </a>
+            </div>
+            <div class="mdl-card__title nome-produto">
+              <h2 class="mdl-card__title-text mdl-card--expand">Produto 1</h2>
+            </div>
+            <div class="mdl-card__supporting-text preco-produto">
+              Preço: R$ 100,00
+            </div>
+            <div class="mdl-card__actions mdl-card--border botao-detalhes">
+              <button
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored detalhes-produto"
+              >
+                Detalhes
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
