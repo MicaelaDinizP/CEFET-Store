@@ -21,7 +21,13 @@ describe("Produto", function(){
     it("deve calcular novamente o precoDesconto ao alterar o precoVenda", function() {
         $this->produto->setPrecoDeVenda(300.0);
         expect( $this->produto->getPrecoDesconto() )->toBe( 300.0 );
-        $this->produto->setPrecoDeVenda(100);
+        $this->produto->setPrecoDeVenda(100.0);
+    });
+
+    it("deve manter inalterado o precoComDesconto caso a taxaDesconto seja zero", function() {
+        $this->produto->setTaxaDesconto(-1);
+        expect( $this->produto->getPrecoDesconto() )->toBe( 100.00 );
+        $this->produto->setTaxaDesconto(0);
     });
 
 });
