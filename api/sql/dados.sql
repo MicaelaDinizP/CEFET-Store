@@ -33,3 +33,17 @@ VALUES ('Boné Turismo', '24.99', '2023-04-23', 'Boné do curso de Turismo com l
 ('Broche Sistemas de Informação', '998.99', '2023-04-30', 'Broche de Sistemas de Informação com logo de ponto e vírgula com mensagem de erro', '766', '0', 'Broche'),
 ('Broche Engenharia Elétrica', '20.00', '2023-04-30', 'Broche de Engenharia Elétrica com logo de um garfo e uma tomada.', '15', '0', 'Broche'),
 ('Broche Física', '20.00', '2023-04-30', 'Broche com logo de um emoji chorando.', '15', '0', 'Broche');
+
+-- Setando imagens default para o campo imagem no bd
+
+INSERT INTO `usuario` (`id`, `matricula`, `nome`, `email`, `senha`, `saldo`) VALUES (NULL, '123456', 'Meg', 'meg@email.com', '12345', '400');
+INSERT INTO `venda` (`id`, `dataVenda`, `valorTotal`, `usuario_id`) VALUES (NULL, '2023-05-11', '0.0', '1'), (NULL, '2023-05-09', '0.0', '1');
+
+INSERT INTO `item_venda` (`quantidade`, `precoUnitario`, `descontoAplicado`, `produto_id`, `venda_id`) VALUES ('17', '999.99', '0', '19', '1'), 
+('20', '99.99', '0', '2', '1'),
+('25', '500.00', '0', '13', '1'),
+('30', '323.13', '0', '24', '1'),
+('15', '90.00', '0', '29', '1'),
+('10', '998.99', '0', '34', '1'),
+('5', '24.99', '0', '1', '2'),
+('4', '56.00', '0', '10', '2');
