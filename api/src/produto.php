@@ -22,81 +22,70 @@ class Produto implements JsonSerializable{
         $this->taxaDesconto = $taxaDesconto;
         $this->categoria = $categoria;
         $this->imagem = $imagem;
-       // $this->calcularPrecoComDesconto();
+       $this->calcularPrecoComDesconto();
     }
-    
+    private function calcularPrecoComDesconto(){
+        if( $this->taxaDesconto == null || $this->taxaDesconto <= 0 ){
+                $this->precoDesconto =  $this->precoDeVenda;
+                return;
+        }
+        $this->precoDesconto = $this->precoDeVenda * (1 - ($this->taxaDesconto / 100));
+    }
 
 //getters e setters -----
     public function getId() {
         return $this->id;
     }
-    
     public function setId($id) {
         $this->id = $id;
     }
-    
     public function getDescricao() {
         return $this->descricao;
     }
-
     public function setDescricao($descricao) {
         $this->descricao = $descricao;
     }
-    
     public function getPrecoDeVenda() {
         return $this->precoDeVenda;
     }
-    
     public function setPrecoDeVenda($precoDeVenda) {
         $this->precoDeVenda = $precoDeVenda;
-       // $this->calcularPrecoComDesconto();
+        $this->calcularPrecoComDesconto();
     }
-    
     public function getLancamento() {
         return $this->lancamento;
     }
-    
     public function setLancamento($lancamento) {
         $this->lancamento = $lancamento;
     }
-    
     public function getDetalhes() {
         return $this->detalhes;
     }
-    
     public function setDetalhes($detalhes) {
         $this->detalhes = $detalhes;
     }
-    
     public function getQuantidade() {
         return $this->quantidade;
     }
-    
     public function setQuantidade($quantidade) {
         $this->quantidade = $quantidade;
     }
-    
     public function getTaxaDesconto() {
         return $this->taxaDesconto;
     }
-    
     public function setTaxaDesconto($taxaDesconto) {
         $this->taxaDesconto = $taxaDesconto;
-      //  $this->calcularPrecoComDesconto();
+        $this->calcularPrecoComDesconto();
     }
-    
     public function getCategoria() {
         return $this->categoria;
     }
-    
     public function setCategoria($categoria) {
         $this->categoria = $categoria;
     }
-    
 	public function getImagem() {
 		return $this->imagem;
 	}
-	
 	public function setImagem($imagem) {
 		$this->imagem = $imagem;
 	}
