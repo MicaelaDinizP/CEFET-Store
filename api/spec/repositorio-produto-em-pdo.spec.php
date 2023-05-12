@@ -36,6 +36,8 @@ describe("RepositorioProdutoEmPDO", function(){
          expect($ultimoProduto->getId())->toBe(20);
      });
 
+     //testar se os campos necessários para cada metodo estão sendo retornados
+
 });
 
 
