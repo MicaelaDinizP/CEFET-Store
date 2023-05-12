@@ -25,8 +25,20 @@ describe("Produto", function(){
     });
 
     it("deve manter inalterado o precoComDesconto caso a taxaDesconto seja zero", function() {
+        $this->produto->setTaxaDesconto(0);
+        expect( $this->produto->getPrecoDesconto() )->toBe( 100.00 );
+        $this->produto->setTaxaDesconto(0);
+    });
+
+    it("deve manter inalterado o precoComDesconto caso a taxaDesconto seja negativa", function() {
         $this->produto->setTaxaDesconto(-1);
         expect( $this->produto->getPrecoDesconto() )->toBe( 100.00 );
+        $this->produto->setTaxaDesconto(0);
+    });
+
+    it("deve setar a taxaDesconto em zero caso seja passado um valor negativo", function() {
+        $this->produto->setTaxaDesconto(-1);
+        expect( $this->produto->getTaxaDesconto() )->toBe( 0 );
         $this->produto->setTaxaDesconto(0);
     });
 
