@@ -6,7 +6,7 @@ require_once("./src/produto.php");
 
 describe( "VisaoProduto", function() {
     it( "deve retornar uma string em JSON ao receber um array de objetos da classe produto", function() {
-        $p = new Produto('Bone Turismo',24.99,'2022-01-01','produto em formato de bone', 10, 0, 'Bone', 0);
+        $p = new Produto('Bone Turismo',24.99,'2022-01-01','produto em formato de bone', 10, 0, 'Bone','img',0,0);
         $produtos = [$p, $p, $p];        
         $produtosEmJson = new VisaoProduto();
         $produtosEmJson = $produtosEmJson->produtosEmJson( $produtos );
