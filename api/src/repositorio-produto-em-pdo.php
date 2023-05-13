@@ -2,7 +2,7 @@
 require_once('repositorio-produto-exception.php');
 require_once('repositorio-produto.php');
 require_once('produto.php');
-class RepositorioProdutoEmPDO implements RepositorioProduto{
+class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
     private $pdo;
 
     public function __construct( $pdo ){
@@ -24,7 +24,7 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtos[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), intval($d['id']) ); 
+                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), null ,intval($d['id']) ); 
             }
             return $produtos;
 
@@ -34,14 +34,37 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
     }
     
     public function obterPorNomeOuId( Produto $produto ){
-        //SELECT * FROM `produto` WHERE id = :id OR descricao = :desc LIMIT 1;
+        $sql = "SELECT * FROM `produto` WHERE id = :id OR descricao = :descricao LIMIT 1";
+        $produtoBuscado = null;
+        try{
+            $ps = $this->pdo->prepare($sql);
+            $ps->setFetchMode(PDO::FETCH_ASSOC);
+            $ps->execute([
+                'id' => $produto->getId(),
+                'descricao' => $produto->getDescricao()
+            ]);
+            if( $ps->rowCount()<0 ){
+                return null;
+            }  
+            $dados = $ps->fetchAll();
+            foreach( $dados as $d ){
+                $produtoBuscado[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
+                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), 
+                    intval($d['total_vendido']), intval($d['produto_id']) ); 
+            }
+            return $produtoBuscado;
+
+        }catch( PDOException $e ) {
+            throw new RepositorioProdutoException( "Não foi possível obter o produto" );
+        }
     }
     public function obterMaisVendidos( $quantidade ) {
-        $sql = "SELECT itemv.id, p.descricao,p.id as produto_id, p.precoDeVenda, p.imagem,p.taxaDesconto,SUM(itemv.quantidade) AS total_vendido
+        $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoVenda, 
+                p.imagem as imagem,p.taxaDesconto as taxaDesconto,SUM(itemv.quantidade) AS total_vendido
                 FROM item_venda itemv
                 JOIN produto p ON itemv.produto_id = p.id
                 GROUP BY itemv.id
-                ORDER BY total_vendido DESC LIMIT 6;";
+                ORDER BY total_vendido DESC LIMIT 6";
         $produtos = null;
         try{
             $ps = $this->pdo->prepare($sql);
@@ -53,12 +76,13 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtos[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    null ,null, null, null, null, null,intval($d['id']) ); 
+                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), 
+                    intval($d['total_vendido']), intval($d['produto_id']) ); 
             }
             return $produtos;
 
-        }catch( PDOException $e ){
-            throw new RepositorioProdutoException("Não foi possível obter os produtos mais vendidos.");
+        }catch( PDOException $e ) {
+            throw new RepositorioProdutoException( "Não foi possível obter os produtos mais vendidos." );
         }
     }
 
