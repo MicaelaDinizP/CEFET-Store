@@ -10,9 +10,10 @@ class Produto implements JsonSerializable{
     private $categoria = null;
     private $imagem = null;
     private $precoDesconto = null;
+    private $totalVendidos = null;
     
     public function __construct( $descricao, $precoDeVenda, $lancamento, $detalhes, $quantidade,
-                                     $taxaDesconto, $categoria, $imagem, $id = 0) {
+                                     $taxaDesconto, $categoria, $imagem, $totalVendidos ,$id = 0) {
         $this->id = $id;
         $this->descricao = $descricao;
         $this->precoDeVenda = $precoDeVenda;
@@ -22,6 +23,7 @@ class Produto implements JsonSerializable{
         $this->taxaDesconto = $taxaDesconto;
         $this->categoria = $categoria;
         $this->imagem = $imagem;
+        $this->totalVendidos = $totalVendidos;
        $this->calcularPrecoComDesconto();
     }
     private function calcularPrecoComDesconto(){
