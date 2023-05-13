@@ -58,7 +58,7 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
             throw new RepositorioProdutoException( "Não foi possível obter o produto" );
         }
     }
-    public function obterMaisVendidos( $quantidade ) {
+    public function obterMaisVendidos() {
         $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoVenda, 
                 p.imagem as imagem,p.taxaDesconto as taxaDesconto,SUM(itemv.quantidade) AS total_vendido
                 FROM item_venda itemv
