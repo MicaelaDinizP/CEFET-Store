@@ -36,6 +36,38 @@ describe("RepositorioProdutoEmPDO", function(){
          expect($ultimoProduto->getId())->toBe(20);
      });
 
+     describe('obterMaisVendidos', function(){
+        it("deve retornar 6 registros do banco de dados", function() {
+            $produtosMaisVendidos = $this->repProdPDO->obterMaisVendidos();
+            expect(count($produtosMaisVendidos))->toBe(6);
+         });
+         it("deve garantir que o primeiro registro possui o maior valor no campo totalVendidos", function() {
+            $produtosMaisVendidos = $this->repProdPDO->obterMaisVendidos();
+            $maisVendido = reset( $produtosMaisVendidos );
+            foreach( $produtosMaisVendidos as $p ){
+                if($p->getTotalVendidos() > $maisVendido->getTotalVendidos()){
+                    $maisVendido = $p;
+                }
+            }
+            expect($maisVendido)->toEqual(reset($produtosMaisVendidos));
+         });
+         it("deve checar se todos os atributos necessários estão armazenados no objeto Produto", function() {
+            //campos: descricao, id, precoDeVenda, imagem, taxaDesconto, total_vendido, precoDesconto
+            $produtosMaisVendidos = $this->repProdPDO->obterMaisVendidos();
+            foreach($produtosMaisVendidos as $produto){
+                $camposNecessariosPresentes = $produto->getDescricao() != null && $produto->getId() > 0 && 
+                $produto->getId() != null && $produto->getPrecoDeVenda() != null && $produto->getImagem() != null && 
+                $produto->getTotalVendidos() != null && $produto->getTotalVendidos() > 0 && $produto->getPrecoDesconto() >= 0;
+                expect($camposNecessariosPresentes)->toBeTruthy();
+            }
+           
+         });
+
+     });
+    
+
+
+
      //testar se os campos necessários para cada metodo estão sendo retornados
 
 });
