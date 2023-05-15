@@ -95,6 +95,13 @@ class Produto implements JsonSerializable{
     public function getPrecoDesconto() {
 		return $this->precoDesconto;
 	}
+    public function getTotalVendidos() {
+		$this->totalVendidos;
+	}
+	public function setTotalVendidos($totalVendidos){
+		$this->totalVendidos = $totalVendidos;
+		return $this;
+	}
 
 // ... -----
     public function jsonSerialize() {
