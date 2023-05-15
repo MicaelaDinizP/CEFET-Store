@@ -2,7 +2,7 @@
 require_once('repositorio-produto-exception.php');
 require_once('repositorio-produto.php');
 require_once('produto.php');
-class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
+class RepositorioProdutoEmPDO implements RepositorioProduto{
     private $pdo;
 
     public function __construct( $pdo ){
@@ -59,7 +59,7 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
         }
     }
     public function obterMaisVendidos() {
-        $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoVenda, 
+        $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoDeVenda, 
                 p.imagem as imagem,p.taxaDesconto as taxaDesconto,SUM(itemv.quantidade) AS total_vendido
                 FROM item_venda itemv
                 JOIN produto p ON itemv.produto_id = p.id
