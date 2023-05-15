@@ -30,11 +30,25 @@ class ControladoraProduto{
         }   
     }
 
+    public function obterMaisVendidos(){
+        try{
+            $produtos = $this->repProdutos->obterMaisVendidos();
+            if( $produtos == null ){
+                return $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
+             }
+            $this->visaoProduto->exibirSucesso( 200 );
+            return $this->visaoProduto->produtosEmJson( $produtos );
+        }catch( RepositorioProdutoException $e ){
+            return $this->visaoProduto->exibirErro( "Não foi possível obter os produtos mais vendidos.", 500 );
+        }   
+    }
+    
     public function calcularDeslocamento( $pagina ){
         $deslocamento = REGISTROS_POR_PAGINA * ( $pagina - 1 );
         return $deslocamento;
     }
 
+    
 }
 
 ?>
