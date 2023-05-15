@@ -12,6 +12,9 @@ if ($metodo === 'GET' && preg_match('/^produtos$/i', $rota)) {
   $produtos = $controladora->obterProdutos();
   echo $produtos;
   die();
+} else if( $metodo === 'GET' && preg_match('/^mais-vendidos$/i', $rota ) ){
+  $produtos = $controladora->obterMaisVendidos();
+  echo $produtos;
 }
 
 ?>
