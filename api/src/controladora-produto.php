@@ -65,7 +65,7 @@ class ControladoraProduto{
         $deslocamento = REGISTROS_POR_PAGINA * ( $pagina - 1 );
         return $deslocamento;
     }
-
+    
 }
 
 ?>
