@@ -2,7 +2,7 @@
 require_once('repositorio-produto-exception.php');
 require_once('repositorio-produto.php');
 require_once('produto.php');
-class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
+class RepositorioProdutoEmPDO implements RepositorioProduto{
     private $pdo;
 
     public function __construct( $pdo ){
@@ -49,8 +49,8 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtoBuscado[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), 
-                    intval($d['total_vendido']), intval($d['produto_id']) ); 
+                    utf8_encode($d['lancamento']), utf8_encode($d['detalhes']), intval([$d['quantidade']]), 
+                    intval($d['taxaDesconto']), utf8_encode($d['categoria']), base64_encode($d['imagem']), null, intval($d['id']) ); 
             }
             return $produtoBuscado;
 
@@ -59,13 +59,14 @@ class RepositorioProdutoEmPDO /*implements RepositorioProduto*/{
         }
     }
     public function obterMaisVendidos() {
-        $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoVenda, 
+        $sql = "SELECT itemv.id, p.descricao as descricao,p.id as produto_id, p.precoDeVenda as precoDeVenda, 
                 p.imagem as imagem,p.taxaDesconto as taxaDesconto,SUM(itemv.quantidade) AS total_vendido
                 FROM item_venda itemv
                 JOIN produto p ON itemv.produto_id = p.id
-                GROUP BY itemv.id
+                GROUP BY p.id
                 ORDER BY total_vendido DESC LIMIT 6";
         $produtos = null;
+        //o groupBy foi trocado para agrupar pelo id do produto e nao duplicar
         try{
             $ps = $this->pdo->prepare($sql);
             $ps->setFetchMode(PDO::FETCH_ASSOC);
