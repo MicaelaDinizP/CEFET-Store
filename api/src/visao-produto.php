@@ -28,9 +28,9 @@ class VisaoProduto{
         $idRequisicao = 0;
         $nomeRequisicao = null;
         if( isset( $_GET['id'] ) ) {
-            $idRequisicao = $_GET['id']; 
+            $idRequisicao = intval(htmlspecialchars($_GET['id'])); 
         }else if( isset( $_GET['descricao'] ) ){
-            $nomeRequisicao = $_GET['descricao'];
+            $nomeRequisicao = htmlspecialchars($_GET['descricao']);
         }else{
             return false;
         }
