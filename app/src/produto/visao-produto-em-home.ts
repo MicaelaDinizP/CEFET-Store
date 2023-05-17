@@ -1,9 +1,7 @@
-import { ControladoraProdutoEmHome } from "./controladora-produto-em-home.js";
 import { Produto } from "./produto.js";
 
 export class VisaoProdutoEmHome {
   montarListagemMaisVendidos(produtos: Produto[]) {
-    const controladoraProdutoEmHome = new ControladoraProdutoEmHome();
     const produtosMaisVendidos = document.querySelector(".produtos");
 
     produtos.forEach((produto) => {
@@ -20,10 +18,11 @@ export class VisaoProdutoEmHome {
       let cardImagem = card.appendChild(document.createElement("div"));
       cardImagem.setAttribute("class", "mdl-card__media card-imagem-container");
       let imagemLink = cardImagem.appendChild(document.createElement("a"));
-      imagemLink.addEventListener("click", () => {
-        controladoraProdutoEmHome.detalharProduto(dataIdProduto);
+      imagemLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        window.location.href = urlDetalhes;
       });
-      // imagemLink.setAttribute("href", `produto?id=${produto.id}`);
       let imagemBanco = imagemLink.appendChild(document.createElement("img"));
       imagemBanco.setAttribute(
         "src",
@@ -34,29 +33,49 @@ export class VisaoProdutoEmHome {
       cardTituloDiv.setAttribute("class", "mdl-card__title nome-produto");
       let cardTitulo = cardTituloDiv.appendChild(document.createElement("h2"));
       let cardTituloLink = cardTitulo.appendChild(document.createElement("a"));
-      cardTituloLink.addEventListener("click", () => {
-        controladoraProdutoEmHome.detalharProduto(dataIdProduto);
+      cardTituloLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        window.location.href = urlDetalhes;
       });
-      // cardTituloLink.setAttribute("href", `produto?id=${produto.id}`);
       cardTitulo.setAttribute("class", "mdl-card__title-text mdl-card--expand");
       cardTituloLink.append(produto.descricao);
 
-      let cardPreco = card.appendChild(document.createElement("div"));
-      cardPreco.setAttribute(
-        "class",
-        "mdl-card__supporting-text preco-produto"
-      );
-      cardPreco.append(`R$ ${produto.precoDeVenda}`);
+      if (produto.taxaDesconto !== 0) {
+        let cardPreco = card.appendChild(document.createElement("div"));
+        cardPreco.setAttribute(
+          "class",
+          "mdl-card__supporting-text preco-produto"
+        );
+
+        let precoOriginal = document.createElement("div");
+        precoOriginal.setAttribute("class", "preco-original");
+        precoOriginal.append(`R$ ${produto.precoDeVenda}`);
+        cardPreco.appendChild(precoOriginal);
+
+        let precoDesconto = document.createElement("div");
+        precoDesconto.setAttribute("class", "preco-desconto");
+        precoDesconto.append(`R$ ${produto.precoDesconto}`);
+        cardPreco.appendChild(precoDesconto);
+
+        let taxaDesconto = document.createElement("div");
+        taxaDesconto.setAttribute("class", "taxa-desconto");
+        taxaDesconto.append(`${produto.taxaDesconto}% OFF`);
+        cardPreco.appendChild(taxaDesconto);
+      } else {
+        let cardPreco = card.appendChild(document.createElement("div"));
+        cardPreco.setAttribute(
+          "class",
+          "mdl-card__supporting-text preco-produto"
+        );
+        cardPreco.append(`R$ ${produto.precoDeVenda}`);
+      }
 
       let cardBotaoDiv = card.appendChild(document.createElement("div"));
       cardBotaoDiv.setAttribute(
         "class",
         "mdl-card__actions mdl-card--border botao-detalhes"
       );
-      // let cardLink = cardBotaoDiv.appendChild(document.createElement("a"));
-      // cardLink.setAttribute("href", `produto?id=${produto.id}`);
-      // cardLink.setAttribute("class", " botao-padrao");
-      // cardLink.append("Detalhes");
       let cardBotao = cardBotaoDiv.appendChild(
         document.createElement("button")
       );
@@ -66,9 +85,11 @@ export class VisaoProdutoEmHome {
       );
       cardBotao.setAttribute("id", "detalhes-produto_" + dataIdProduto);
       cardBotao.append("Detalhes");
-      cardBotao.addEventListener("click", () => {
+      cardBotao.addEventListener("click", (e) => {
         console.log("qualquer merda");
-        controladoraProdutoEmHome.detalharProduto(dataIdProduto);
+        e.preventDefault();
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        window.location.href = urlDetalhes;
       });
     });
   }
