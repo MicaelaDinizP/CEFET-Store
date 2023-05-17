@@ -10,7 +10,8 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
     }
 
     public function obterPagina($limite, $deslocamento){
-        $sql = "SELECT id, descricao, precoDeVenda, imagem, taxaDesconto FROM produto LIMIT :limite  OFFSET :deslocamento";
+        $sql = "SELECT id, descricao, precoDeVenda, imagem, taxaDesconto FROM produto 
+            LIMIT :limite  OFFSET :deslocamento";
         $produtos = null;
         try{
             $ps = $this->pdo->prepare($sql);
@@ -24,7 +25,8 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtos[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), null ,intval($d['id']) ); 
+                    null ,null, null, intval($d['taxaDesconto']), null, base64_encode($d['imagem']), null, 
+                    intval($d['id']) ); 
             }
             return $produtos;
 
@@ -86,6 +88,26 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             throw new RepositorioProdutoException( "Não foi possível obter os produtos mais vendidos." );
         }
     }
+
+    public function obterTotalProdutos(){
+        $total = 0;
+        $sql = "SELECT COUNT(*) as total FROM produto";
+        try{
+            $ps = $this->pdo->prepare($sql);
+            $ps->setFetchMode(PDO::FETCH_ASSOC);
+            $ps->execute();
+            if( $ps->rowCount()<0 ){
+                return null;
+            }  
+            $dado = $ps->fetchAll();
+            $total = $dado[0]['total'];
+            return $total;
+    
+        } catch(PDOException $e) {
+            throw new RepositorioProdutoException("Não foi possível obter o total de produtos.");
+        }
+    }
+    
 
 
 }
