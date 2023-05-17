@@ -1,0 +1,42 @@
+/* Geral */
+.material-icons.white {
+  color: #fff;
+}
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+/* Produtos */
+.container-produtos {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card-imagem-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-card-square > .mdl-card__title {
+  color: #000;
+  line-height: 2.2rem;
+  padding-bottom: 0;
+}
+
+.produtos {
+  padding: 1rem;
+}
+
+.preco-produto {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.botao-padrao {
+  font-weight: bold !important;
+}
