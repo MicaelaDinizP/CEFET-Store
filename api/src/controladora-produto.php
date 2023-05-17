@@ -23,6 +23,7 @@ class ControladoraProduto{
             $pagina = $this->visaoProduto->obterPaginaDesejada();
             $deslocamento = $this->calcularDeslocamento( $pagina );
             $produtos = $this->repProdutos->obterPagina(REGISTROS_POR_PAGINA, $deslocamento);
+            $produtos[] = [ 'totalPaginas' =>$this->calcularTotalPaginas( $pagina ), 'paginaAtual' => $pagina ];
             if( $produtos == null ){
                 return $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
              }
@@ -60,6 +61,10 @@ class ControladoraProduto{
         }catch( RepositorioProdutoException $e ){
             return $this->visaoProduto->exibirErro( "Não foi possível obter os produtos mais vendidos.", 500 );
         }   
+    }
+    public function calcularTotalPaginas( $pagina ) {
+        $totalProdutos = intval($this->repProdutos->obterTotalProdutos());
+        return ceil($totalProdutos/REGISTROS_POR_PAGINA);
     }
     public function calcularDeslocamento( $pagina ){
         $deslocamento = REGISTROS_POR_PAGINA * ( $pagina - 1 );
