@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="produtos.css" />
     <title>CEFET Shop</title>
     <link
       rel="stylesheet"
       href="https://code.getmdl.io/1.3.0/material.indigo-amber.min.css"
     />
-    <script src="/node_modules/material-design-lite/material.min.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -57,38 +56,15 @@
           </a>
         </nav>
       </div>
-      <main class="mdl-layout__content">
-        <div class="produtos">
-          <div class="mdl-card demo-card-square mdl-shadow--2dp produto">
-            <!-- Link no botão de detalhes, na foto ou na descrição -->
-            <div class="mdl-card__media">
-              <a href="#/product/1">
-                <img
-                  src="../../images/casaco-teste.jpg"
-                  width="220"
-                  height="140"
-                  border="0"
-                  alt="Product 1"
-                  style="padding: 20px"
-                />
-              </a>
-            </div>
-            <div class="mdl-card__title nome-produto">
-              <h2 class="mdl-card__title-text mdl-card--expand">Produto 1</h2>
-            </div>
-            <div class="mdl-card__supporting-text preco-produto">
-              Preço: R$ 100,00
-            </div>
-            <div class="mdl-card__actions mdl-card--border botao-detalhes">
-              <button
-                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored detalhes-produto"
-              >
-                Detalhes
-              </button>
-            </div>
-          </div>
-        </div>
+      <main class="mdl-layout__content container-produtos">
+        <div class="todos-produtos mdl-grid"></div>
       </main>
     </div>
   </body>
 </html>
+
+<script
+  type="module"
+  defer
+  src="../../../dist/controladora-produto-em-todos.js"
+></script>
