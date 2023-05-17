@@ -32,9 +32,18 @@ a {
   padding: 1rem;
 }
 
+.preco-original {
+  text-decoration: line-through;
+}
+
 .preco-produto {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.preco-desconto {
+  font-size: 1.5rem;
+  font-weight: bolder;
 }
 
 .botao-padrao {
