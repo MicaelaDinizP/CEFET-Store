@@ -1,6 +1,5 @@
 import { VisaoProdutoEmTodos } from "./visao-produto-em-todos.js";
 import { ProdutoRepositorio } from "./produto-repositorio.js";
-//import { ControladoraProdutoEmDetalhes } from "./controladora-produto-em-detalhes.js";
 //import { Util } from "../util/util";
 
 export class ControladoraProdutoEmHome {
