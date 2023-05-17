@@ -14,7 +14,7 @@ describe("Produto", function(){
 
     it("deve calcular novamente o precoDesconto ao alterar a taxaDesconto", function() {
         $this->produto->setTaxaDesconto(10);
-        expect( $this->produto->getPrecoDesconto() )->toBe( 90.0 );
+        expect( $this->produto->getPrecoDesconto() )->toBe( number_format(90.0, 2) );
         $this->produto->setTaxaDesconto(0);
     });
 
