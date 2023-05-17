@@ -6,7 +6,6 @@ import { type } from "os";
 const API_PRODUTOS = "http://localhost/2023-1-pis-g3/api/produtos";
 const API_MAIS_VENDIDOS = "http://localhost/2023-1-pis-g3/api/mais-vendidos";
 const API_PRODUTO = "http://localhost/2023-1-pis-g3/api/produto";
-
 export class ProdutoRepositorio {
   obterTodos = async () => {
     let resposta: any = undefined;
@@ -92,43 +91,39 @@ export class ProdutoRepositorio {
       headers: { Accept: "application/json" }
     })
       .then((response) => {
+        console.log(response);
         // if (response.status == 401) Util.redirecionarParaLogin();
-
         if (response.status == 403)
           throw new ProdutoErro(
             "Você não possui permissão para executar esta ação."
           );
-        debugger;
         if (response.status == 404) return false;
         else return response.json();
       })
       .then((produto) => {
-        debugger;
+        console.log(produto);
         resposta = produto;
+        console.log(resposta);
       })
       .catch((erro) => {
         throw new ProdutoErro(erro);
       });
-
-    if (!resposta) {
-      return resposta;
-    } else {
-      return this.transformaEmObjeto(resposta);
-    }
+    resposta = this.transformaEmObjeto(resposta[0]);
+    return resposta;
   };
 
-  transformaEmObjeto(array: any) {
+  transformaEmObjeto(prod: any) {
     const produto = new Produto(
-      array.id,
-      array.descricao,
-      array.precoDeVenda,
-      array.lancamento,
-      array.detalhes,
-      array.quantidade,
-      array.taxaDesconto,
-      array.categoria,
-      array.precoDesconto,
-      array.imagem
+      prod.id,
+      prod.descricao,
+      prod.precoDeVenda,
+      prod.lancamento,
+      prod.detalhes,
+      prod.quantidade,
+      prod.taxaDesconto,
+      prod.categoria,
+      prod.precoDesconto,
+      prod.imagem
     );
     return produto;
   }
