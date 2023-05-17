@@ -37,6 +37,15 @@ a {
   font-weight: bold;
 }
 
+.preco-original {
+  text-decoration: line-through;
+}
+
+.preco-desconto {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
 .botao-padrao {
   font-weight: bold !important;
 }
