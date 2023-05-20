@@ -51,7 +51,7 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $dados = $ps->fetchAll();
             foreach( $dados as $d ){
                 $produtoBuscado[] = new Produto( utf8_encode($d['descricao']), doubleval($d['precoDeVenda']), 
-                    utf8_encode($d['lancamento']), utf8_encode($d['detalhes']), intval([$d['quantidade']]), 
+                    utf8_encode($d['lancamento']), utf8_encode($d['detalhes']), intval($d['quantidade']), 
                     intval($d['taxaDesconto']), utf8_encode($d['categoria']), base64_encode($d['imagem']), null, intval($d['id']) ); 
             }
             return $produtoBuscado;
