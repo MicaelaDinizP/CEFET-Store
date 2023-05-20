@@ -25,28 +25,28 @@ class ControladoraProduto{
             $produtos = $this->repProdutos->obterPagina(REGISTROS_POR_PAGINA, $deslocamento);
             $produtos[] = [ 'totalPaginas' =>$this->calcularTotalPaginas( $pagina ), 'paginaAtual' => $pagina ];
             if( $produtos == null ){
-                return $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
+               $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
              }
             $this->visaoProduto->exibirSucesso( 200 );
-            return $this->visaoProduto->produtosEmJson( $produtos );
+            $this->visaoProduto->produtosEmJson( $produtos );
         }catch( RepositorioProdutoException $e ){
-            return $this->visaoProduto->exibirErro( "Não foi possível obter os produtos.", 500 );
+            $this->visaoProduto->exibirErro( "Não foi possível obter os produtos.", 500 );
         }   
     }
     public function obterPorNomeOuId(){
         try{
             $produtoDesejado = $this->visaoProduto->obterNomeOuId();
             if( $produtoDesejado == false ){
-                return $this->visaoProduto->exibirErro( 'O produto desejado não é válido.', 400 );
+                $this->visaoProduto->exibirErro( 'O produto desejado não é válido.', 400 );
             }
             $produtoCompleto = $this->repProdutos->obterPorNomeOuId( $produtoDesejado );
             if( $produtoCompleto == null ){
-               return $this->visaoProduto->exibirErro( 'O produto desejado não existe.', 404 );
+               $this->visaoProduto->exibirErro( 'O produto desejado não existe.', 404 );
             }
             $this->visaoProduto->exibirSucesso( 200 );
-            return $this->visaoProduto->produtosEmJson( $produtoCompleto );
+            $this->visaoProduto->produtosEmJson( $produtoCompleto );
         }catch(RepositorioProdutoException $e ){
-           return $this->visaoProduto->exibirErro( "Não foi possível obter o produto desejado.", 500 );
+           $this->visaoProduto->exibirErro( "Não foi possível obter o produto desejado.", 500 );
         }
     }
 
@@ -54,12 +54,12 @@ class ControladoraProduto{
         try{
             $produtos = $this->repProdutos->obterMaisVendidos();
             if( $produtos == null ){
-                return $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
+                $this->visaoProduto->exibirErro( 'Não há produtos para retornar.', 404 );
              }
             $this->visaoProduto->exibirSucesso( 200 );
-            return $this->visaoProduto->produtosEmJson( $produtos );
+            $this->visaoProduto->produtosEmJson( $produtos );
         }catch( RepositorioProdutoException $e ){
-            return $this->visaoProduto->exibirErro( "Não foi possível obter os produtos mais vendidos.", 500 );
+            $this->visaoProduto->exibirErro( "Não foi possível obter os produtos mais vendidos.", 500 );
         }   
     }
     public function calcularTotalPaginas( $pagina ) {

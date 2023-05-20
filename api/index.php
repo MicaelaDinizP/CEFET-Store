@@ -9,14 +9,11 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 $controladora = new ControladoraProduto();
 
 if ($metodo === 'GET' && preg_match('/^produtos(\?pag=\d{1,5})?$/', $rota)) {
-  $produtos = $controladora->obterProdutos();
-  echo $produtos;
+  $controladora->obterProdutos();
 }else if( $metodo === 'GET' && preg_match('/^produto(?:\?id=\d+)?(?:[&\?]descricao=[^&]{1,255})?$/', $rota ) ) {
-    $produto = $controladora->obterPorNomeOuId();
-    echo $produto;
+    $controladora->obterPorNomeOuId();
 }else if( $metodo === 'GET' && preg_match('/^mais-vendidos$/i', $rota ) ){
-    $produtos = $controladora->obterMaisVendidos();
-    echo $produtos;
+    $controladora->obterMaisVendidos();
 }else{
   http_response_code(404);
   header('Content-Type: application/json;charset=utf-8');
