@@ -86,7 +86,6 @@ export class VisaoProdutoEmHome {
       cardBotao.setAttribute("id", "detalhes-produto_" + dataIdProduto);
       cardBotao.append("Detalhes");
       cardBotao.addEventListener("click", (e) => {
-        console.log("qualquer merda");
         e.preventDefault();
         const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
