@@ -5,7 +5,7 @@ require_once("./src/modelos/produto.php");
 
 describe("Produto", function(){
     beforeAll(function(){
-        $this->produto = new Produto('descricao',100.00,'22-02-2023','detalhes',1,0,'categoria','imagem',1);
+        $this->produto = new Produto('descricao',100.00,'22-02-2023','detalhes',1,0,'categoria','imagem',null,1);
     });
 
     it("deve settar o precoDesconto igual ao precoVenda", function() {
