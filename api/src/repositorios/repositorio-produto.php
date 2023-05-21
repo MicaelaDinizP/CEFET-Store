@@ -1,6 +1,6 @@
 <?php
 
-require_once ('produto.php');
+require_once ('./src/modelos/produto.php');
 interface RepositorioProduto{
     public function obterPagina( $limite, $deslocamento );
     public function obterPorNomeOuId( Produto $produto );

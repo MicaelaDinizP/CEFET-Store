@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/controladora-produto.php');
+require_once('src/controladoras/controladora-produto.php');
 
 $caminho = $_SERVER['REQUEST_URI'];
 $rota = basename($caminho);

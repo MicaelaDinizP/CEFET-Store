@@ -35,7 +35,7 @@ class VisaoProduto{
         if( isset( $_GET['descricao'] ) ){
             $nomeRequisicao = htmlspecialchars($_GET['descricao']);
         }
-        if($idRequisicao==0 && $nomeRequisicao==null){
+        if( $idRequisicao == 0 && $nomeRequisicao == null ){
            return false; 
         }
         return new Produto( $nomeRequisicao, null, null, null, null, null, null, null, null, $idRequisicao );

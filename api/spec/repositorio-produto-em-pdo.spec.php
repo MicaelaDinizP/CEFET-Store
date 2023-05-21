@@ -1,7 +1,7 @@
 <?php 
 require_once("vendor/autoload.php");
-require_once("./src/repositorio-produto-em-pdo.php");
-require_once("./src/produto.php");
+require_once("./src/repositorios/repositorio-produto-em-pdo.php");
+require_once("./src/modelos/produto.php");
 
 describe("RepositorioProdutoEmPDO", function(){
     beforeAll(function(){

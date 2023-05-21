@@ -1,7 +1,8 @@
 <?php
-require_once('repositorio-produto-exception.php');
-require_once('repositorio-produto.php');
-require_once('produto.php');
+
+require_once("./src/exceptions/repositorio-produto-exception.php");
+require_once("repositorio-produto.php");
+require_once("./src/modelos/produto.php");
 class RepositorioProdutoEmPDO implements RepositorioProduto{
     private $pdo;
 

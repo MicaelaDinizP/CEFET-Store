@@ -1,10 +1,10 @@
 <?php
 
-require_once('conexao-pdo.php');
-require_once('visao-produto.php');
-require_once('produto.php');
-require_once('repositorio-produto-exception.php');
-require_once('repositorio-produto-em-pdo.php');
+require_once('./src/util/conexao-pdo.php');
+require_once('./src/visoes/visao-produto.php');
+require_once('./src/modelos/produto.php');
+require_once('./src/exceptions/repositorio-produto-exception.php');
+require_once('./src/repositorios/repositorio-produto-em-pdo.php');
 
 CONST NOME_DO_BANCO = 'cefet-shop';
 CONST REGISTROS_POR_PAGINA = 10;
