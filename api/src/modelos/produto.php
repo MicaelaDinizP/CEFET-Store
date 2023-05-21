@@ -32,7 +32,7 @@ class Produto implements JsonSerializable{
                 $this->taxaDesconto = 0;
                 return;
         }
-        $this->precoDesconto = number_format($this->precoDeVenda * (1 - ($this->taxaDesconto / 100)), 2);
+        $this->precoDesconto = number_format(floatval($this->precoDeVenda * (1 - ($this->taxaDesconto / 100))), 2);
     }
 
 //getters e setters -----
