@@ -1,8 +1,49 @@
 import { Produto } from "./produto.js";
+import { ControladoraProdutoEmTodos } from "./controladora-produto-em-todos.js";
 
 export class VisaoProdutoEmTodos {
-  montarListagemProdutos(produtos: Produto[]) {
+  montarListagemProdutos(
+    produtos: Produto[],
+    paginaAtual: number,
+    totalPaginas: number
+  ) {
     const listagemProdutos = document.querySelector(".todos-produtos");
+    const controladoraProdutoEmTodos = new ControladoraProdutoEmTodos();
+    const divPaginacao = document.querySelector(".paginacao");
+
+    console.log(totalPaginas);
+    debugger;
+
+    if (!listagemProdutos) {
+      console.error(
+        "Elemento com a classe 'todos-produtos' não foi encontrado."
+      );
+      return;
+    }
+
+    listagemProdutos.innerHTML = "";
+
+    if (!divPaginacao) {
+      console.error("Element with class 'paginacao' not found.");
+      return;
+    }
+
+    divPaginacao.innerHTML = "";
+
+    for (let pagina = 1; pagina <= totalPaginas; pagina++) {
+      debugger;
+      const botaoPagina = document.createElement("button");
+      botaoPagina.setAttribute(
+        "class",
+        "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao"
+      );
+      botaoPagina.innerText = pagina.toString();
+      botaoPagina.addEventListener("click", (e) => {
+        e.preventDefault();
+        controladoraProdutoEmTodos.iniciarListagem(pagina);
+      });
+      divPaginacao?.appendChild(botaoPagina);
+    }
 
     produtos.forEach((produto) => {
       const dataIdProduto = produto.id;
