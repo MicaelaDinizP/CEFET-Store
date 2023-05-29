@@ -13,6 +13,7 @@ export class ControladoraProdutoEmTodos {
 
   iniciarListagem(paginaEscolhida: number) {
     this.carregarTodos(paginaEscolhida);
+    this.atualizarBadgeCarrinho();
     //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
@@ -34,6 +35,12 @@ export class ControladoraProdutoEmTodos {
     } catch (erro) {
       //Util.mostrarMensagem("Erro ao carregar os produtos. " + erro);
     }
+  };
+
+  atualizarBadgeCarrinho = () => {
+    const quantidadeProdutos =
+      this.produtoRepositorio.obterQuantidadeProdutos();
+    this.visaoProdutoEmTodos.atualizarBadgeCarrinho(quantidadeProdutos);
   };
 }
 
