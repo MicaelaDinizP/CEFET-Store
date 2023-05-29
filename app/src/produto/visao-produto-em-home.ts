@@ -92,4 +92,9 @@ export class VisaoProdutoEmHome {
       });
     });
   }
+
+  atualizarBadgeCarrinho(quantidade: number) {
+    const badgeCarrinho = document.querySelector(".mdl-badge");
+    badgeCarrinho!.setAttribute("data-badge", quantidade.toString());
+  }
 }
