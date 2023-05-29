@@ -48,8 +48,7 @@ export class ProdutoRepositorio {
           );
 
         if (response.status == 404) return false;
-        else console.log(typeof response);
-        return response.json();
+        else return response.json();
       })
       .then((produtos) => {
         resposta = produtos;
@@ -71,7 +70,6 @@ export class ProdutoRepositorio {
   };
 
   obterPorId = async (id: number) => {
-    console.log("ENTROU NO OBTERPORID");
     let resposta: any = undefined;
 
     await fetch(API_PRODUTO + "?id=" + id, {
@@ -79,7 +77,6 @@ export class ProdutoRepositorio {
       headers: { Accept: "application/json" }
     })
       .then((response) => {
-        console.log(response);
         // if (response.status == 401) Util.redirecionarParaLogin();
         if (response.status == 403)
           throw new ProdutoErro(
@@ -89,9 +86,7 @@ export class ProdutoRepositorio {
         else return response.json();
       })
       .then((produto) => {
-        console.log(produto);
         resposta = produto;
-        console.log(resposta);
       })
       .catch((erro) => {
         throw new ProdutoErro(erro);
@@ -114,5 +109,12 @@ export class ProdutoRepositorio {
       prod.imagem
     );
     return produto;
+  }
+
+  obterQuantidadeProdutos() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    const quantidadeProdutos = carrinho.length;
+    console.log(quantidadeProdutos);
+    return quantidadeProdutos;
   }
 }
