@@ -71,5 +71,8 @@ export class VisaoProdutoEmDetalhes {
   atualizarBadgeCarrinho(quantidade: number) {
     const badgeCarrinho = document.querySelector(".mdl-badge");
     badgeCarrinho!.setAttribute("data-badge", quantidade.toString());
+    if (quantidade < 1) {
+      badgeCarrinho!.classList.remove("mdl-badge");
+    }
   }
 }
