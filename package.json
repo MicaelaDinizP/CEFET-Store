@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel app/src/index.html"
   },
   "keywords": [],
   "author": "",
