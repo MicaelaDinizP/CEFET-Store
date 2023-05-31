@@ -1,6 +1,5 @@
 import { Produto } from "./produto.js";
 import { ProdutoErro } from "./produto-erro.js";
-import { type } from "os";
 // import { Util } from "../util/util";
 
 const API_MAIS_VENDIDOS = "http://localhost/2023-1-pis-g3/api/mais-vendidos";
@@ -114,7 +113,6 @@ export class ProdutoRepositorio {
   obterQuantidadeProdutos() {
     const carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
     const quantidadeProdutos = carrinho.length;
-    console.log(quantidadeProdutos);
     return quantidadeProdutos;
   }
 }
