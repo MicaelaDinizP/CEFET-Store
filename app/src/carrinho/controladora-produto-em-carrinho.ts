@@ -1,5 +1,5 @@
 import { VisaoProdutoEmCarrinho } from "./visao-produto-em-carrinho.js";
-import { ProdutoRepositorio } from "./produto-repositorio.js";
+import { ProdutoRepositorio } from "../produto/produto-repositorio.js";
 
 export class ControladoraProdutoEmCarrinho {
   visaoProdutoEmCarrinho: VisaoProdutoEmCarrinho;

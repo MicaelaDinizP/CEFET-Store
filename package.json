@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "parcel app/src/index.html"
+    "start": "cd app && parcel app/src/index.html"
   },
   "keywords": [],
   "author": "",

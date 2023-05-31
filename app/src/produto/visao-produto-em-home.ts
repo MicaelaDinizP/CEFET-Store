@@ -13,7 +13,7 @@ export class VisaoProdutoEmHome {
         "class",
         "mdl-card demo-card-square mdl-shadow--2dp produto mdl-cell"
       );
-      produtosMaisVendidos?.appendChild(card);
+      produtosMaisVendidos!.appendChild(card);
 
       let cardImagem = card.appendChild(document.createElement("div"));
       cardImagem.setAttribute("class", "mdl-card__media card-imagem-container");

@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="./carrinho.css" />
   <title>CEFET Shop</title>
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-amber.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -45,15 +45,22 @@
       </nav>
     </div>
     <main class="mdl-layout__content container-produtos">
-      <div class="produtos mdl-grid"></div>
-      <a href="./produtos/produtos.html"
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao">
-        VER MAIS
-      </a>
+      <div id="produto-carrinho"></div>
+      <div id="mensagem-carrinho-vazio" class="mensagem-carrinho-vazio mdl-typography--text-center">
+        Seu carrinho de compras está vazio.
+      </div>
+      <div id="carrinho-actions">
+        <div class="button-container">
+          <a href="#" id="botao-finalizar-compra"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao">
+            Finalizar Compra
+          </a>
+        </div>
+      </div>
     </main>
   </div>
 </body>
 
 </html>
 
-<script type="module" defer src="./produto/controladora-produto-em-home.ts"></script>
+<script type="module" defer src="./controladora-produto-em-carrinho.ts"></script>

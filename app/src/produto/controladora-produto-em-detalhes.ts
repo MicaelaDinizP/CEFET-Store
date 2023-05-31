@@ -1,6 +1,6 @@
 import { VisaoProdutoEmDetalhes } from "./visao-produto-em-detalhes.js";
 import { ProdutoRepositorio } from "./produto-repositorio.js";
-import { CarrinhoItem } from "./carrinhoItem.js";
+import { CarrinhoItem } from "../carrinho/carrinhoItem.js";
 
 export class ControladoraProdutoEmDetalhes {
   visaoProdutoEmDetalhes: VisaoProdutoEmDetalhes;
