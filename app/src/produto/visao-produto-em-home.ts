@@ -20,7 +20,7 @@ export class VisaoProdutoEmHome {
       let imagemLink = cardImagem.appendChild(document.createElement("a"));
       imagemLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       let imagemBanco = imagemLink.appendChild(document.createElement("img"));
@@ -35,7 +35,7 @@ export class VisaoProdutoEmHome {
       let cardTituloLink = cardTitulo.appendChild(document.createElement("a"));
       cardTituloLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       cardTitulo.setAttribute("class", "mdl-card__title-text mdl-card--expand");
@@ -87,7 +87,7 @@ export class VisaoProdutoEmHome {
       cardBotao.append("Detalhes");
       cardBotao.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
     });

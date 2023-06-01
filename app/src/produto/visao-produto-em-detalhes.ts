@@ -51,7 +51,7 @@ export class VisaoProdutoEmDetalhes {
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" id="adicionar-ao-carrinho">
               Adicionar ao carrinho
             </button>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" href="http://localhost/2023-1-pis-g3/app/src/web/carrinho/carrinho.html">
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" href="http://localhost/2023-1-pis-g3/app/src/carrinho/carrinho.html">
               Ir para o carrinho
             </a>
           </div>

@@ -1,4 +1,4 @@
-import { Produto } from "./produto.js";
+import { Produto } from "../produto/produto.js";
 import { ControladoraProdutoEmTodos } from "./controladora-produto-em-todos.js";
 
 export class VisaoProdutoEmTodos {
@@ -59,7 +59,7 @@ export class VisaoProdutoEmTodos {
       let imagemLink = cardImagem.appendChild(document.createElement("a"));
       imagemLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       let imagemBanco = imagemLink.appendChild(document.createElement("img"));
@@ -74,7 +74,7 @@ export class VisaoProdutoEmTodos {
       let cardTituloLink = cardTitulo.appendChild(document.createElement("a"));
       cardTituloLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       cardTitulo.setAttribute("class", "mdl-card__title-text mdl-card--expand");
@@ -126,7 +126,7 @@ export class VisaoProdutoEmTodos {
       cardBotao.append("Detalhes");
       cardBotao.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
     });
