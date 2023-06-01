@@ -62,7 +62,9 @@ export class ControladoraProdutoEmDetalhes {
             descricao: produto.descricao,
             precoDeVenda: produto.precoDeVenda,
             quantidadeSelecionada: quantidade,
-            imagem: produto.imagem
+            imagem: produto.imagem,
+            precoDesconto: produto.precoDesconto,
+            taxaDesconto: produto.taxaDesconto
           };
           carrinho.push(novoProduto);
         }

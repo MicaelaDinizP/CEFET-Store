@@ -58,7 +58,7 @@ export class VisaoProdutoEmCarrinho {
       const imagemProduto = document.createElement("img");
       imagemProduto.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${item.id}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${item.id}`;
         window.location.href = urlDetalhes;
       });
       imagemProduto.setAttribute(
@@ -74,12 +74,16 @@ export class VisaoProdutoEmCarrinho {
       celulaNomeProduto.textContent = item.descricao;
       celulaNomeProduto.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${item.id}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${item.id}`;
         window.location.href = urlDetalhes;
       });
 
       const celulaPrecoProduto = document.createElement("td");
-      celulaPrecoProduto.textContent = `R$ ${item.precoDeVenda}`;
+      if (item.taxaDesconto > 0) {
+        celulaPrecoProduto.textContent = `R$ ${item.precoDesconto}`;
+      } else {
+        celulaPrecoProduto.textContent = `R$ ${item.precoDeVenda}`;
+      }
 
       const celulaQuantidadeProduto = document.createElement("td");
       celulaQuantidadeProduto.textContent = item.quantidadeSelecionada;
@@ -106,7 +110,11 @@ export class VisaoProdutoEmCarrinho {
       linha.appendChild(celulaQuantidadeProduto);
       linha.appendChild(celulaBotaoExcluir);
 
-      subtotal += item.precoDeVenda * item.quantidadeSelecionada;
+      if (item.taxaDesconto > 0) {
+        subtotal += item.precoDesconto * item.quantidadeSelecionada;
+      } else {
+        subtotal += item.precoDeVenda * item.quantidadeSelecionada;
+      }
 
       tableBody.appendChild(linha);
     });
