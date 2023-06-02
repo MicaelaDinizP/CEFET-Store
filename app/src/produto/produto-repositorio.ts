@@ -1,14 +1,9 @@
 import { Produto } from "./produto.js";
 import { ProdutoErro } from "./produto-erro.js";
-// import { Util } from "../util/util";
-
-const API_MAIS_VENDIDOS = "http://localhost/2023-1-pis-g3/api/mais-vendidos";
-const API_PRODUTO = "http://localhost/2023-1-pis-g3/api/produto";
+import { API_MAIS_VENDIDOS, API_PRODUTOS, API_PRODUTO } from "../rotas";
 export class ProdutoRepositorio {
   obterTodos = async (paginaEscolhida: number) => {
-    const API_PRODUTOS = `http://localhost/2023-1-pis-g3/api/produtos?pag=${paginaEscolhida}`;
-
-    const response = await fetch(API_PRODUTOS, {
+    const response = await fetch(API_PRODUTOS + `?pag=${paginaEscolhida}`, {
       method: "GET",
       headers: { Accept: "application/json" }
     });
