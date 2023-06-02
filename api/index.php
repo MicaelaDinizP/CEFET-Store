@@ -14,6 +14,10 @@ if ($metodo === 'GET' && preg_match('/^produtos(\?pag=\d{1,5})?$/', $rota)) {
     $controladora->obterPorNomeOuId();
 }else if( $metodo === 'GET' && preg_match('/^mais-vendidos$/i', $rota ) ){
     $controladora->obterMaisVendidos();
+}else if($metodo === 'POST' && preg_match('/^login$/i', $rota)) {
+  $controladoraUsuario->login();
+}else if($metodo === 'GET' && preg_match('/^logout$/i', $rota)) {
+  $controladoraUsuario->logout();  
 }else{
   http_response_code(404);
   header('Content-Type: application/json;charset=utf-8');
