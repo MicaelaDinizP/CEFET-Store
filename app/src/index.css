@@ -8,6 +8,10 @@ a {
   color: black !important;
 }
 
+.link-navegacao {
+  color: white !important;
+}
+
 /* Produtos */
 .container-produtos {
   display: flex !important;

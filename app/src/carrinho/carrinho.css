@@ -8,6 +8,10 @@ a {
   color: black !important;
 }
 
+.link-navegacao {
+  color: white !important;
+}
+
 .d-flex {
   display: flex !important;
   justify-content: center !important;
