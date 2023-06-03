@@ -9,6 +9,7 @@ export class Produto {
   private _categoria: string;
   private _precoDesconto: number;
   private _imagem: string;
+  private _quantidadeSelecionada: number;
 
   constructor(
     id: number,
@@ -32,6 +33,7 @@ export class Produto {
     this._categoria = categoria;
     this._precoDesconto = precoDesconto;
     this._imagem = imagem;
+    this._quantidadeSelecionada = 0;
   }
 
   public set id(id: number) {
@@ -112,5 +114,13 @@ export class Produto {
 
   public get imagem(): string {
     return this._imagem;
+  }
+
+  public set quantidadeSelecionada(quantidadeSelecionada: number) {
+    this._quantidadeSelecionada = quantidadeSelecionada;
+  }
+
+  public get quantidadeSelecionada(): number {
+    return this._quantidadeSelecionada;
   }
 }

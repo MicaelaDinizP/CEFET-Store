@@ -13,14 +13,14 @@ export class VisaoProdutoEmHome {
         "class",
         "mdl-card demo-card-square mdl-shadow--2dp produto mdl-cell"
       );
-      produtosMaisVendidos?.appendChild(card);
+      produtosMaisVendidos!.appendChild(card);
 
       let cardImagem = card.appendChild(document.createElement("div"));
       cardImagem.setAttribute("class", "mdl-card__media card-imagem-container");
       let imagemLink = cardImagem.appendChild(document.createElement("a"));
       imagemLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       let imagemBanco = imagemLink.appendChild(document.createElement("img"));
@@ -35,7 +35,7 @@ export class VisaoProdutoEmHome {
       let cardTituloLink = cardTitulo.appendChild(document.createElement("a"));
       cardTituloLink.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
       cardTitulo.setAttribute("class", "mdl-card__title-text mdl-card--expand");
@@ -87,9 +87,17 @@ export class VisaoProdutoEmHome {
       cardBotao.append("Detalhes");
       cardBotao.addEventListener("click", (e) => {
         e.preventDefault();
-        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/web/detalhes/produto.html?id=${dataIdProduto}`;
+        const urlDetalhes = `http://localhost/2023-1-pis-g3/app/src/produto/produto.html?id=${dataIdProduto}`;
         window.location.href = urlDetalhes;
       });
     });
+  }
+
+  atualizarBadgeCarrinho(quantidade: number) {
+    const badgeCarrinho = document.querySelector(".mdl-badge");
+    badgeCarrinho!.setAttribute("data-badge", quantidade.toString());
+    if (quantidade < 1) {
+      badgeCarrinho!.classList.remove("mdl-badge");
+    }
   }
 }

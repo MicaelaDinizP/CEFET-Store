@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="produtos.css" />
+    <link rel="stylesheet" href="./carrinho.css" />
     <title>CEFET Shop</title>
     <link
       rel="stylesheet"
@@ -16,6 +16,7 @@
     />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
+
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
@@ -29,8 +30,8 @@
             <a class="mdl-navigation__link" href="/#/login">Login</a>
             <a
               class="mdl-badge mdl-badge--overlap"
-              data-badge="1"
-              href="/#/carrinho"
+              data-badge=""
+              href="http://localhost/2023-1-pis-g3/app/src/carrinho/carrinho.html"
               ><button
                 class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
               >
@@ -46,8 +47,8 @@
           <a class="mdl-navigation__link" href="/#/login">Login</a>
           <a
             class="mdl-badge mdl-badge--overlap"
-            data-badge="1"
-            href="/#/carrinho"
+            data-badge=""
+            href="http://localhost/2023-1-pis-g3/app/src/carrinho/carrinho.html"
             ><button
               class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
             >
@@ -57,8 +58,24 @@
         </nav>
       </div>
       <main class="mdl-layout__content container-produtos">
-        <div class="todos-produtos mdl-grid"></div>
-        <div class="paginacao"></div>
+        <div id="produto-carrinho"></div>
+        <div
+          id="mensagem-carrinho-vazio"
+          class="mensagem-carrinho-vazio mdl-typography--text-center"
+        >
+          Seu carrinho de compras está vazio.
+        </div>
+        <div id="carrinho-actions">
+          <div class="button-container">
+            <a
+              href="#"
+              id="botao-finalizar-compra"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao"
+            >
+              Finalizar Compra
+            </a>
+          </div>
+        </div>
       </main>
     </div>
   </body>
@@ -67,5 +84,5 @@
 <script
   type="module"
   defer
-  src="../../../dist/controladora-produto-em-todos.js"
+  src="../../dist/carrinho/controladora-produto-em-carrinho.js"
 ></script>

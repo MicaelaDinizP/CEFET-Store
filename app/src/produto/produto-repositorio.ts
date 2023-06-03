@@ -1,15 +1,9 @@
 import { Produto } from "./produto.js";
 import { ProdutoErro } from "./produto-erro.js";
-import { type } from "os";
-// import { Util } from "../util/util";
-
-const API_MAIS_VENDIDOS = "http://localhost/2023-1-pis-g3/api/mais-vendidos";
-const API_PRODUTO = "http://localhost/2023-1-pis-g3/api/produto";
+import { API_MAIS_VENDIDOS, API_PRODUTOS, API_PRODUTO } from "../rotas";
 export class ProdutoRepositorio {
   obterTodos = async (paginaEscolhida: number) => {
-    const API_PRODUTOS = `http://localhost/2023-1-pis-g3/api/produtos?pag=${paginaEscolhida}`;
-
-    const response = await fetch(API_PRODUTOS, {
+    const response = await fetch(API_PRODUTOS + `?pag=${paginaEscolhida}`, {
       method: "GET",
       headers: { Accept: "application/json" }
     });
@@ -48,8 +42,7 @@ export class ProdutoRepositorio {
           );
 
         if (response.status == 404) return false;
-        else console.log(typeof response);
-        return response.json();
+        else return response.json();
       })
       .then((produtos) => {
         resposta = produtos;
@@ -71,7 +64,6 @@ export class ProdutoRepositorio {
   };
 
   obterPorId = async (id: number) => {
-    console.log("ENTROU NO OBTERPORID");
     let resposta: any = undefined;
 
     await fetch(API_PRODUTO + "?id=" + id, {
@@ -79,7 +71,6 @@ export class ProdutoRepositorio {
       headers: { Accept: "application/json" }
     })
       .then((response) => {
-        console.log(response);
         // if (response.status == 401) Util.redirecionarParaLogin();
         if (response.status == 403)
           throw new ProdutoErro(
@@ -89,9 +80,7 @@ export class ProdutoRepositorio {
         else return response.json();
       })
       .then((produto) => {
-        console.log(produto);
         resposta = produto;
-        console.log(resposta);
       })
       .catch((erro) => {
         throw new ProdutoErro(erro);
@@ -114,5 +103,11 @@ export class ProdutoRepositorio {
       prod.imagem
     );
     return produto;
+  }
+
+  obterQuantidadeProdutos() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    const quantidadeProdutos = carrinho.length;
+    return quantidadeProdutos;
   }
 }

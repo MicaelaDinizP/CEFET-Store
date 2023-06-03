@@ -13,6 +13,7 @@ export class ControladoraProdutoEmHome {
 
   iniciarListagem() {
     this.carregarTodos();
+    this.atualizarBadgeCarrinho();
     //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
@@ -23,6 +24,12 @@ export class ControladoraProdutoEmHome {
     } catch (erro) {
       //Util.mostrarMensagem("Erro ao carregar os produtos. " + erro);
     }
+  };
+
+  atualizarBadgeCarrinho = () => {
+    const quantidadeProdutos =
+      this.produtoRepositorio.obterQuantidadeProdutos();
+    this.visaoProdutoEmHome.atualizarBadgeCarrinho(quantidadeProdutos);
   };
 }
 

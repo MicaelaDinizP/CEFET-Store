@@ -1,5 +1,5 @@
 import { VisaoProdutoEmTodos } from "./visao-produto-em-todos.js";
-import { ProdutoRepositorio } from "./produto-repositorio.js";
+import { ProdutoRepositorio } from "../produto/produto-repositorio.js";
 //import { Util } from "../util/util";
 
 export class ControladoraProdutoEmTodos {
@@ -13,6 +13,7 @@ export class ControladoraProdutoEmTodos {
 
   iniciarListagem(paginaEscolhida: number) {
     this.carregarTodos(paginaEscolhida);
+    this.atualizarBadgeCarrinho();
     //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
@@ -34,6 +35,12 @@ export class ControladoraProdutoEmTodos {
     } catch (erro) {
       //Util.mostrarMensagem("Erro ao carregar os produtos. " + erro);
     }
+  };
+
+  atualizarBadgeCarrinho = () => {
+    const quantidadeProdutos =
+      this.produtoRepositorio.obterQuantidadeProdutos();
+    this.visaoProdutoEmTodos.atualizarBadgeCarrinho(quantidadeProdutos);
   };
 }
 
