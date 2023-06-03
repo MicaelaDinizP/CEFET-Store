@@ -13,9 +13,9 @@ class Venda{
     private function calcularValorTotal(){
         $valorItens = 0.0;
         foreach( $this->itensVenda as $item ){
-            $valorDoProduto = number_format( floatval( $item->getPrecoDesconto() ),2 );
+            $valorDoProduto = floatval( $item->getPrecoDesconto() );
             $quantidade = intval( $item->getQuantidade() );
-            $valorItens += number_format( floatval( $valorDoProduto * $quantidade),2 ) ;
+            $valorItens += floatval( $valorDoProduto * $quantidade) ;
         }
         $this->valorTotal = $valorItens;
     }
@@ -37,10 +37,6 @@ class Venda{
         }
         return false;
     }
-
-    // public function removerItemVenda( $id ){ 
-    //     //implementar...
-    // }
 
 //getters e setters
 	public function getId() {
