@@ -14,13 +14,13 @@ describe("Produto", function(){
 
     it("deve calcular novamente o precoDesconto ao alterar a taxaDesconto", function() {
         $this->produto->setTaxaDesconto(10);
-        expect( $this->produto->getPrecoDesconto() )->toBe( number_format(90.0, 2) );
+        expect( $this->produto->getPrecoDesconto() )->toBe( floatval(number_format(90.00, 2)) );
         $this->produto->setTaxaDesconto(0);
     });
 
     it("deve calcular novamente o precoDesconto ao alterar o precoVenda", function() {
         $this->produto->setPrecoDeVenda(300.0);
-        expect( $this->produto->getPrecoDesconto() )->toBe( 300.0 );
+        expect( $this->produto->getPrecoDesconto() )->toBe( 300.00 );
         $this->produto->setPrecoDeVenda(100.0);
     });
 
