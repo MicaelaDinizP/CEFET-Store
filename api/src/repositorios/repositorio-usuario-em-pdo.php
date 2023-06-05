@@ -18,7 +18,7 @@ class RepositorioUsuarioEmPDO implements RepositorioUsuario {
             $ps->bindParam(':em', $email, PDO::PARAM_STR);
             $ps->bindParam(':matr', $matricula, PDO::PARAM_STR);
             $ps->execute();
-            if($ps->rowCount()<0) {
+            if($ps->rowCount()<=0) {
                 return null;
             }  
             $usuarioObtido = $ps->fetch();
