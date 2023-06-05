@@ -29,7 +29,25 @@ class RepositorioUsuarioEmPDO implements RepositorioUsuario {
             $usuario->setMatricula($usuarioObtido['matricula']);
             $usuario->setNome($usuarioObtido['nome']);
             $usuario->setEmail($usuarioObtido['email']);
-            $usuario->setSaldo(number_format(floatval($usuarioObtido['saldo']),2));
+            $usuario->setSaldo(floatval(number_format($usuarioObtido['saldo'],2)));
+            return $usuario;           
+        }catch(PDOException $e) {
+           throw new RepositorioUsuarioException("Não foi possível obter o usuario.".$e->getMessage());
+        }
+    }
+    public function obterPorId($idUsuario) {
+        $sql = 'SELECT * from usuario WHERE id=:idUsuario';
+        try{
+            $ps = $this->pdo->prepare($sql);
+            $ps->setFetchMode(PDO::FETCH_ASSOC);
+            $ps->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            $ps->execute();
+            if($ps->rowCount()<=0) {
+                return null;
+            } 
+            $usuarioObtido = $ps->fetch();
+            $usuario = new Usuario($usuarioObtido['matricula'], $usuarioObtido['nome'], $usuarioObtido['email'], 
+                $usuarioObtido['senha'], floatval(number_format($usuarioObtido['saldo'],2)),intval($usuarioObtido['id']),);
             return $usuario;           
         }catch(PDOException $e) {
            throw new RepositorioUsuarioException("Não foi possível obter o usuario.".$e->getMessage());
