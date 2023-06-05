@@ -3,19 +3,20 @@
 require_once("usuario.php");
 require_once("./src/modelos/venda.php");
 require_once("./src/modelos/produto.php");
+require_once("./src/usuario-service.php");
 class VendaService {
-    private $idUsuarioFixo;
-    public function __construct() {
-        $this->idUsuarioFixo = 1;
+    private $servicoUsuario;
+    public function __construct( $servicoUsuario ) {
+        $this->servicoUsuario = $servicoUsuario;
     }
     public function validarUsuarioLogado( $idUsuario ) {
         $usuarioValido = false;
-        if($idUsuario === $this->idUsuarioFixo ){
+        if( $idUsuario === $this->servicoUsuario->obterIdUsuario() ) {
             $usuarioValido = true;
         }
         return $usuarioValido;
     }
-    public function validarProdutosParaVenda( &$produtos ){
+    public function validarProdutosParaVenda( &$produtos ) {
         $produtosValidos = true;
         foreach( $produtos as $p ){
             $id = $p->getId();
@@ -26,6 +27,10 @@ class VendaService {
                 $produtosValidos = false;
                 break;
             }else{
+                if( $qtd <= 0 && $precoDeVenda <= 0.00) {
+                    $produtosValidos = false;
+                    break;
+                }
                 $p->setId( intval( $id ) );
                 $p->setQuantidade( intval( $qtd ) );
                 $p->setPrecoDeVenda(floatval($precoDeVenda),2 );
