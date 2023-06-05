@@ -1,11 +1,16 @@
 <?php
 
 require_once('./src/modelos/produto.php');
+require_once('./src/modelos/venda.php');
 class VisaoVenda {
     private $dadosRequisicao;
     public function __construct() {
         $dadosRequisicao = file_get_contents('php://input');
         $this->dadosRequisicao = json_decode($dadosRequisicao);
+    }
+    public function vendasEmJson( $vendas ) {
+        echo json_encode($vendas);
+        die();
     }
     public function obterProdutosParaVenda(){
         $produtos = null;
@@ -32,7 +37,6 @@ class VisaoVenda {
     public function exibirSucesso( $codigo ){
         http_response_code( $codigo );
         header('Content-Type:application/json;charset=utf-8');
-        die();
     }
 
     public function exibirErro( $mensagem, $codigo ) {
