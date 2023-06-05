@@ -1,7 +1,7 @@
 <?php
 
 require_once("produto.php");
-class Venda{
+class Venda implements JsonSerializable {
     private $id;
     private $dataVenda;
     private $valorTotal;
@@ -19,10 +19,10 @@ class Venda{
         }
         $this->valorTotal = $valorItens;
     }
-    public function adicionarItemVenda( Produto $produto ){
-        if( $produto instanceof Produto && $produto->getPrecoDesconto() > 0 ){
+    public function adicionarItemVenda( Produto $produto ) {
+        if( $produto instanceof Produto && $produto->getPrecoDesconto() > 0 ) {
             $duplicado = false;
-            foreach( $this->itensVenda as $item ){
+            foreach( $this->itensVenda as $item ) {
                 if( $item->getId() === $produto->getId() ){
                     $item->setQuantidade( $item->getQuantidade() + $produto->getQuantidade() );
                     $duplicado = true;
@@ -37,7 +37,17 @@ class Venda{
         }
         return false;
     }
-
+    public function jsonSerialize() {
+        $encodar = json_encode($this->itensVenda);
+        $json = [
+            'id' => $this->id,
+            'dataVenda' => $this->dataVenda,
+            'valorTotal' => $this->valorTotal,
+            'produtos' => json_decode($encodar)
+        ];
+        return $json;
+    }
+    
 //getters e setters
 	public function getId() {
 		return $this->id;
