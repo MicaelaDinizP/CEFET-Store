@@ -20,6 +20,8 @@ if ($metodo === 'GET' && preg_match('/^produtos(\?pag=\d{1,5})?$/', $rota)) {
   $controladoraProduto->obterMaisVendidos();
 }else if( $metodo === 'POST' && preg_match('/^finalizar-venda$/i', $rota ) ){
   $controladoraVenda->cadastrarVenda();
+}else if($metodo === 'GET' && preg_match('/^vendas-usuario$/i', $rota )) {
+  $controladoraVenda->obterVendasPorIdUsuario();
 }else if($metodo === 'POST' && preg_match('/^login$/i', $rota)) {
   $controladoraUsuario->login();
 }else if($metodo === 'GET' && preg_match('/^logout$/i', $rota)) {
