@@ -1,0 +1,10 @@
+main {
+  display: flex !important;
+}
+
+.container-login {
+  margin-top: 1rem !important;
+  justify-content: center; /* centraliza na horizontal */
+  align-items: center; /* centraliza na vertical */
+  height: 100vh; /* define a altura do container em 100% da altura do tamanho da tela */
+}
