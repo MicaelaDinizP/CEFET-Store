@@ -20,7 +20,7 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $ps->bindParam(':limite', $limite, PDO::PARAM_INT);
             $ps->bindParam(':deslocamento', $deslocamento, PDO::PARAM_INT);
             $ps->execute();
-            if( $ps->rowCount()<0 ){
+            if( $ps->rowCount()<=0 ){
                 return null;
             }  
             $dados = $ps->fetchAll();
@@ -46,7 +46,7 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
                 'id' => $produto->getId(),
                 'descricao' => $produto->getDescricao()
             ]);
-            if( $ps->rowCount()<0 ){
+            if( $ps->rowCount()<=0 ){
                 return null;
             }  
             $dados = $ps->fetchAll();
@@ -74,7 +74,7 @@ class RepositorioProdutoEmPDO implements RepositorioProduto{
             $ps = $this->pdo->prepare($sql);
             $ps->setFetchMode(PDO::FETCH_ASSOC);
             $ps->execute();
-            if( $ps->rowCount()<0 ){
+            if( $ps->rowCount()<=0 ){
                 return null;
             }  
             $dados = $ps->fetchAll();
