@@ -27,17 +27,18 @@ class ControladoraUsuario {
             if($usuario === null || $usuario === false) {
                 $this->visaoUsuario->exibirErro("As credenciais são inválidas.", 401);
             }
-            $this->visaoUsuario->exibirSucesso(200);
             $this->servicoUsuario->ajustarObjetoParaLogin($usuario);
+            $this->servicoUsuario->iniciarSessaoLogin();
+            $this->servicoUsuario->salvarIdUsuario($usuario->getId());
+            $this->visaoUsuario->exibirSucesso(200);
             $this->visaoUsuario->usuarioEmJson($usuario);
-            $this->servicoUsuario->iniciarSessao();
-            $this->servicoUsuario->salvarIDUsuario($usuario->getId());
         }catch(RepositorioUsuarioException $e) {
             $this->visaoUsuario->exibirErro("Não foi possível obter o login.", 500);
         }
     }
     public function logout() {
-        $this->servicoUsuario->destruirSessao();
+            $this->servicoUsuario->destruirSessao();
+            $this->visaoUsuario->exibirSucesso(200);
     }
 }
 
