@@ -28,8 +28,7 @@ class ControladoraUsuario {
                 $this->visaoUsuario->exibirErro("As credenciais são inválidas.", 401);
             }
             $this->visaoUsuario->exibirSucesso(200);
-            $usuario->setSenha(null);
-            $usuario->setEmail(null);
+            $this->servicoUsuario->ajustarObjetoParaLogin($usuario);
             $this->visaoUsuario->usuarioEmJson($usuario);
             $this->servicoUsuario->iniciarSessao();
             $this->servicoUsuario->salvarIDUsuario($usuario->getId());

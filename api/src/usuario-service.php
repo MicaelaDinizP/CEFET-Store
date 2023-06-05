@@ -18,6 +18,11 @@ class ServicoUsuario {
         unset($_SESSION['logado']);
         session_destroy();
     }
+
+    public function ajustarObjetoParaLogin( &$usuario ) {
+        $usuario->setSenha(null);
+        $usuario->setEmail(null);
+    }
 }
 
 ?>
