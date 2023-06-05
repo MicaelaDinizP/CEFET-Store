@@ -7,9 +7,15 @@ class ServicoUsuario {
         session_start();
     }
 
-    public function salvarIDUsuario($id) {
-        // $this->iniciarSessao();
-        $_SESSION['id'] = $id;
+    function iniciarSessaoLogin() {
+        $this->iniciarSessao();
+        session_regenerate_id(true);
+        $_SESSION['logado'] = true;
+    }
+
+    public function salvarIdUsuario($id) {
+        if( session_status() === PHP_SESSION_ACTIVE )
+            $_SESSION['id'] = $id;
     }
 
     public function destruirSessao() {
@@ -22,6 +28,18 @@ class ServicoUsuario {
     public function ajustarObjetoParaLogin( &$usuario ) {
         $usuario->setSenha(null);
         $usuario->setEmail(null);
+    }
+
+    function obterIdUsuario() {
+        $this->iniciarSessao();
+        return intval($_SESSION['id']);
+    }
+    
+    function verificarSessao() {
+        $this->iniciarSessao();
+        if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['id'], $_SESSION['logado'])) {
+            return true;
+        }
     }
 }
 
