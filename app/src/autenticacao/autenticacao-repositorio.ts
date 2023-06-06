@@ -35,8 +35,9 @@ export class AutenticacaoRepositorio {
   };
 
   existeUsuarioLogado = () => {
-    if (localStorage.getItem("usuario")!.length > 0) {
-      return true;
+    const usuario = JSON.parse(localStorage.getItem("usuario") || "[]");
+    if (usuario && usuario.id) {
+      return usuario;
     }
     return false;
   };
