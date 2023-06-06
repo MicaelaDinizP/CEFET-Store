@@ -129,6 +129,7 @@ export class VisaoProdutoEmCarrinho {
     const footerSubtotalLabel = document.createElement("td");
     footerSubtotalLabel.textContent = "Subtotal";
     const footerSubtotalValor = document.createElement("td");
+    footerSubtotalValor.classList.add("subtotal");
     footerSubtotalValor.textContent = `R$ ${subtotal.toFixed(2)}`;
 
     footerRow.appendChild(footerCelulaVazia);
@@ -161,6 +162,27 @@ export class VisaoProdutoEmCarrinho {
       badgeCarrinho!.classList.remove("mdl-badge");
     }
   }
+
+  calcularValorDaCompra = () => {
+    let subtotal: string | number | null =
+      document.querySelector(".subtotal")!.textContent;
+
+    if (typeof subtotal === "string") {
+      subtotal = subtotal.replace("R$", "").trim();
+    }
+    return Number(subtotal);
+  };
+
+  finalizarCompra = () => {
+    const controladoraProdutoEmCarrinho = new ControladoraProdutoEmCarrinho();
+    const botaoFinalizarCompra = document.getElementById(
+      "botao-finalizar-compra"
+    ) as HTMLButtonElement;
+    botaoFinalizarCompra!.addEventListener("click", () => {
+      controladoraProdutoEmCarrinho.finalizarCompra();
+    });
+  };
+
   mostrarUsuarioLogado = () => {
     const linkLogin = document.getElementById(
       "link-login"
@@ -179,5 +201,48 @@ export class VisaoProdutoEmCarrinho {
       "link-login"
     ) as HTMLAnchorElement;
     linkLogin.innerText = "Login";
+  };
+
+  exibirMensagemItensRemovidos = (descricao: string) => {
+    const mensagem = document.getElementById("mensagem-usuario");
+    mensagem!.textContent = `O item ${descricao} foi removido do seu carrinho por falta de estoque! Para comprá-lo tente adicioná-lo novamente ao carrinho.`;
+    mensagem!.style.display = "block";
+    setTimeout(() => {
+      mensagem!.style.display = "none";
+    }, 5000);
+  };
+
+  limparCarrinho = () => {
+    const carrinhoContainer = document.getElementById("produto-carrinho");
+    carrinhoContainer!.innerHTML = "";
+    const finalizarCompraBotao = document.getElementById(
+      "botao-finalizar-compra"
+    ) as HTMLButtonElement;
+    finalizarCompraBotao!.style.display = "none";
+    const mensagemCarrinhoVazio = document.getElementById(
+      "mensagem-carrinho-vazio"
+    );
+    mensagemCarrinhoVazio!.style.display = "block";
+    localStorage.removeItem("carrinho");
+    window.location.reload();
+  };
+
+  exibirMensagemSaldoInsuficiente = () => {
+    const mensagem = document.getElementById("mensagem-usuario");
+    mensagem!.textContent =
+      "Você não possui saldo suficiente para concluir a compra. Tente remover um ou mais itens e tente novamente.";
+    mensagem!.style.display = "block";
+    setTimeout(() => {
+      mensagem!.style.display = "none";
+    }, 5000);
+  };
+
+  exibirMensagemDeSucessoNaCompra = (pedido: number) => {
+    const mensagem = document.getElementById("mensagem-usuario");
+    mensagem!.textContent = `Pedido ${pedido} concluído com sucesso! Agora basta passar no Almoxarifado do CEFET das 9h às 18h e resgatar seus itens.`;
+    mensagem!.style.display = "block";
+    setTimeout(() => {
+      mensagem!.style.display = "none";
+    }, 5000);
   };
 }
