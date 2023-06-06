@@ -22,7 +22,8 @@ class VisaoVenda {
     private function criarArrayProdutos( $arrayProdutos ) {
         $produtos = [];
         foreach( $arrayProdutos as $p ) {
-            $produtos[] = new Produto( null, $p->precoDeVenda, null, null, $p->quantidade, $p->taxaDesconto, null,
+            $produtos[] = new Produto( null, $p->precoDeVenda, null, null, $p->quantidadeSelecionada
+            , $p->taxaDesconto, null,
                 null, null, $p->id );
         }
         return $produtos;
