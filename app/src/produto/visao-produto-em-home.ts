@@ -100,4 +100,23 @@ export class VisaoProdutoEmHome {
       badgeCarrinho!.classList.remove("mdl-badge");
     }
   }
+  mostrarUsuarioLogado = () => {
+    const linkLogin = document.getElementById(
+      "link-login"
+    ) as HTMLAnchorElement;
+    linkLogin.innerText = "Logout";
+    linkLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("usuario");
+      window.location.href =
+        "http://localhost/2023-1-pis-g3/app/src/index.html";
+    });
+  };
+
+  mostrarUsuarioDeslogado = () => {
+    const linkLogin = document.getElementById(
+      "link-login"
+    ) as HTMLAnchorElement;
+    linkLogin.innerText = "Login";
+  };
 }
