@@ -22,7 +22,6 @@ export class ControladoraUsuarioEmAutenticacao {
 
       try {
         const usuario = await this.autenticacaoRepositorio.logar(obj);
-        console.log(usuario);
         if (usuario) {
           localStorage.setItem("usuario", JSON.stringify(usuario));
           this.visaoUsuarioEmAutenticacao.mostrarMensagemLogado();
@@ -59,6 +58,17 @@ export class ControladoraUsuarioEmAutenticacao {
 
   redirecionarParaCarrinho = () => {
     window.location.href = "../carrinho/carrinho.html";
+  };
+
+  debitarCefetinsDoUsuario = (valorDaCompra: number) => {
+    const usuario = this.autenticacaoRepositorio.existeUsuarioLogado();
+    if (usuario) {
+      const usuarioArmazenado = JSON.parse(
+        localStorage.getItem("usuario") || "{}"
+      );
+      usuarioArmazenado.saldo -= valorDaCompra;
+      localStorage.setItem("usuario", JSON.stringify(usuarioArmazenado));
+    }
   };
 }
 
