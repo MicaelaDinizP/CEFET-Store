@@ -8,3 +8,10 @@ main {
   align-items: center; /* centraliza na vertical */
   height: 100vh; /* define a altura do container em 100% da altura do tamanho da tela */
 }
+.sucesso {
+  color: green;
+}
+
+.erro {
+  color: red;
+}
