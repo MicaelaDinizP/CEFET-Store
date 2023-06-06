@@ -32,8 +32,9 @@ class ControladoraVenda{
         }
         try{
             $venda = $this->servicoVenda->montarVenda( $produtos );
-            $this->repVenda->cadastrarVenda( $venda, $idUsuario );
+            $numeroPedido = $this->repVenda->cadastrarVenda( $venda, $idUsuario );
             $this->visaoVenda->exibirSucesso(201);
+            $this->visaoVenda->vendasEmJson(["numeroPedido"=>$numeroPedido]);
         }catch( RepositorioVendaException $e ){
             $this->visaoVenda->exibirErro( 'A venda não pode ser cadastrada.', 500 );
         }

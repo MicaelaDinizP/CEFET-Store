@@ -50,6 +50,7 @@ class RepositorioVendaEmPDO implements RepositorioVenda {
                 'idUsuario'=> $idUsuario
             ]);
             $this->pdo->commit();
+            return $venda->getId();
 
         }catch( PDOException $e ){
             $this->pdo->rollBack();
