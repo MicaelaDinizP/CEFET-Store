@@ -54,21 +54,20 @@ export class ControladoraProdutoEmCarrinho {
   finalizarCompra = async () => {
     if (this.controladoraUsuarioEmAutenticacao.estaLogado()) {
       const usuario = this.controladoraUsuarioEmAutenticacao.estaLogado();
-      const cefetinsDoUsuario = usuario.saldo; // supondo que o saldo de Cefetins esteja armazenado na propriedade "cefetins" do objeto do usuário
-      const valorDaCompra = this.visaoProdutoEmCarrinho.calcularValorDaCompra(); // função para calcular o valor total da compra
+      const cefetinsDoUsuario = usuario.saldo;
+      const valorDaCompra = this.visaoProdutoEmCarrinho.calcularValorDaCompra();
 
       if (cefetinsDoUsuario < valorDaCompra) {
         this.visaoProdutoEmCarrinho.exibirMensagemSaldoInsuficiente();
         return;
       }
 
-      this.verificarEstoqueDosItensERemover(); // função para verificar se há estoque suficiente para os itens no carrinho
+      this.verificarEstoqueDosItensERemover();
 
-      const numeroPedido = await this.gerarNumeroPedido(); // função para gerar um número de pedido aleatório
-      // Processo de finalização de compra
+      const numeroPedido = await this.gerarNumeroPedido();
       this.controladoraUsuarioEmAutenticacao.debitarCefetinsDoUsuario(
         valorDaCompra
-      ); // função para debitar o saldo de Cefetins do usuário pelo valor da compra
+      );
       this.visaoProdutoEmCarrinho.exibirMensagemDeSucessoNaCompra(numeroPedido);
       setTimeout(() => {
         this.visaoProdutoEmCarrinho.limparCarrinho();
