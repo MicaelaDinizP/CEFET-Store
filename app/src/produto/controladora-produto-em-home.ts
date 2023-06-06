@@ -1,19 +1,27 @@
 import { VisaoProdutoEmHome } from "./visao-produto-em-home.js";
 import { ProdutoRepositorio } from "./produto-repositorio.js";
-//import { Util } from "../util/util";
+import { ControladoraUsuarioEmAutenticacao } from "../autenticacao/controladora-usuario-em-autenticacao.js";
 
 export class ControladoraProdutoEmHome {
   visaoProdutoEmHome: VisaoProdutoEmHome;
   produtoRepositorio: ProdutoRepositorio;
+  controladoraUsuarioEmAutenticacao: ControladoraUsuarioEmAutenticacao;
 
   constructor() {
     this.visaoProdutoEmHome = new VisaoProdutoEmHome();
     this.produtoRepositorio = new ProdutoRepositorio();
+    this.controladoraUsuarioEmAutenticacao =
+      new ControladoraUsuarioEmAutenticacao();
   }
 
   iniciarListagem() {
     this.carregarTodos();
     this.atualizarBadgeCarrinho();
+    if (this.controladoraUsuarioEmAutenticacao.estaLogado()) {
+      this.visaoProdutoEmHome.mostrarUsuarioLogado();
+    } else {
+      this.visaoProdutoEmHome.mostrarUsuarioDeslogado();
+    }
     //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 

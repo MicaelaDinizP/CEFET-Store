@@ -1,14 +1,18 @@
 import { VisaoProdutoEmDetalhes } from "./visao-produto-em-detalhes.js";
 import { ProdutoRepositorio } from "./produto-repositorio.js";
 import { CarrinhoItem } from "../carrinho/carrinhoItem.js";
+import { ControladoraUsuarioEmAutenticacao } from "../autenticacao/controladora-usuario-em-autenticacao.js";
 
 export class ControladoraProdutoEmDetalhes {
   visaoProdutoEmDetalhes: VisaoProdutoEmDetalhes;
   produtoRepositorio: ProdutoRepositorio;
+  controladoraUsuarioEmAutenticacao: ControladoraUsuarioEmAutenticacao;
 
   constructor() {
     this.produtoRepositorio = new ProdutoRepositorio();
     this.visaoProdutoEmDetalhes = new VisaoProdutoEmDetalhes();
+    this.controladoraUsuarioEmAutenticacao =
+      new ControladoraUsuarioEmAutenticacao();
   }
 
   iniciarDetalhamento() {
@@ -16,6 +20,11 @@ export class ControladoraProdutoEmDetalhes {
     const idProduto = params.get("id");
     if (idProduto) this.detalharProduto(Number(idProduto));
     this.atualizarBadgeCarrinho();
+    if (this.controladoraUsuarioEmAutenticacao.estaLogado()) {
+      this.visaoProdutoEmDetalhes.mostrarUsuarioLogado();
+    } else {
+      this.visaoProdutoEmDetalhes.mostrarUsuarioDeslogado();
+    }
     //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
@@ -77,7 +86,7 @@ export class ControladoraProdutoEmDetalhes {
         );
       }
     } else {
-      alert("Por favor selecione uma quantidade válida (1 a 10).");
+      alert("Por favor selecione uma quantidade vÃ¡lida (1 a 10).");
     }
   };
 
