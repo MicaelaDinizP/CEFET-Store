@@ -86,7 +86,7 @@ export class ControladoraProdutoEmDetalhes {
         );
       }
     } else {
-      alert("Por favor selecione uma quantidade vÃ¡lida (1 a 10).");
+      alert("Por favor selecione uma quantidade válida (1 a 10).");
     }
   };
 

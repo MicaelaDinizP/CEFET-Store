@@ -10,7 +10,6 @@ export class VisaoProdutoEmTodos {
     const listagemProdutos = document.querySelector(".todos-produtos");
     const controladoraProdutoEmTodos = new ControladoraProdutoEmTodos();
     const divPaginacao = document.querySelector(".paginacao");
-    debugger;
 
     if (!listagemProdutos) {
       console.error(
@@ -29,7 +28,6 @@ export class VisaoProdutoEmTodos {
     divPaginacao.innerHTML = "";
 
     for (let pagina = 1; pagina <= totalPaginas; pagina++) {
-      debugger;
       const botaoPagina = document.createElement("button");
       botaoPagina.setAttribute(
         "class",
