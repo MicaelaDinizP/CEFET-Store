@@ -1,7 +1,6 @@
 import { VisaoProdutoEmTodos } from "./visao-produto-em-todos.js";
 import { ProdutoRepositorio } from "../produto/produto-repositorio.js";
 import { ControladoraUsuarioEmAutenticacao } from "../autenticacao/controladora-usuario-em-autenticacao.js";
-//import { Util } from "../util/util";
 
 export class ControladoraProdutoEmTodos {
   visaoProdutoEmTodos: VisaoProdutoEmTodos;
@@ -38,9 +37,7 @@ export class ControladoraProdutoEmTodos {
         paginaAtual,
         totalPaginas
       );
-    } catch (erro) {
-      //Util.mostrarMensagem("Erro ao carregar os produtos. " + erro);
-    }
+    } catch (erro) {}
   };
 
   atualizarBadgeCarrinho = () => {
@@ -51,5 +48,5 @@ export class ControladoraProdutoEmTodos {
 }
 
 const controladoraProdutoEmTodos = new ControladoraProdutoEmTodos();
-const paginaEscolhida = 1; // Defina aqui o número da página escolhida
+const paginaEscolhida = 1;
 controladoraProdutoEmTodos.iniciarListagem(paginaEscolhida);

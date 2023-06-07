@@ -34,8 +34,6 @@ export class ProdutoRepositorio {
       headers: { Accept: "application/json" }
     })
       .then((response) => {
-        // if (response.status == 401) Util.redirecionarParaLogin();
-
         if (response.status == 403)
           throw new ProdutoErro(
             "Você não possui permissão para executar esta ação."
@@ -71,7 +69,6 @@ export class ProdutoRepositorio {
       headers: { Accept: "application/json" }
     })
       .then((response) => {
-        // if (response.status == 401) Util.redirecionarParaLogin();
         if (response.status == 403)
           throw new ProdutoErro(
             "Você não possui permissão para executar esta ação."

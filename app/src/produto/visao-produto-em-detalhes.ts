@@ -48,9 +48,9 @@ export class VisaoProdutoEmDetalhes {
           <div class="mdl-card__actions">
           ${quantidadeInput}
           <div>     
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" id="adicionar-ao-carrinho">
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" id="adicionar-ao-carrinho">
               Adicionar ao carrinho
-            </button>
+            </a>
             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent botao-padrao" href="http://localhost/2023-1-pis-g3/app/src/carrinho/carrinho.html">
               Ir para o carrinho
             </a>
@@ -109,7 +109,6 @@ export class VisaoProdutoEmDetalhes {
       linkLogin.appendChild(dropdownButton);
       linkLogin.appendChild(dropdownMenu);
 
-      // Chama a função realizarLogout quando o link de logout for clicado
       const logoutLink = document.getElementById("logout-link");
 
       logoutLink!.addEventListener("click", (event) => {

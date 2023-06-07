@@ -22,7 +22,6 @@ export class ControladoraProdutoEmHome {
     } else {
       this.visaoProdutoEmHome.mostrarUsuarioDeslogado();
     }
-    //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
   carregarTodos = async () => {

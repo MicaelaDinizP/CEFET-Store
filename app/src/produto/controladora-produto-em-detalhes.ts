@@ -25,7 +25,6 @@ export class ControladoraProdutoEmDetalhes {
     } else {
       this.visaoProdutoEmDetalhes.mostrarUsuarioDeslogado();
     }
-    //Util.aoClicarEmDeslogar(Util.deslogar);
   }
 
   detalharProduto = async (id: number) => {
