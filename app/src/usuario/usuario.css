@@ -1,0 +1,25 @@
+/* Geral */
+.material-icons.white {
+  color: #fff;
+}
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.link-navegacao {
+  color: white !important;
+}
+
+.botao-padrao {
+  font-weight: bold !important;
+}
+
+/* Usuario */
+.container-usuario {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+}
