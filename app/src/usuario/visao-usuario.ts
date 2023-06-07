@@ -221,4 +221,10 @@ export class VisaoUsuario {
     const mensagem = document.querySelector(".mensagem-erro") as HTMLElement;
     mensagem.style.display = "block";
   };
+
+  mostrarMensagemDeErro(mensagem: string) {
+    const mensagemErro = document.getElementById("erro-pedidos") as HTMLElement;
+    mensagemErro.innerText += mensagem + "\n";
+    mensagemErro.style.display = "block";
+  }
 }

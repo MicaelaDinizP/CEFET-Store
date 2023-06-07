@@ -34,22 +34,36 @@ export class ControladoraUsuario {
   };
 
   carregarUsuario = () => {
-    const usuario = this.usuarioRepositorio.pegarUsuarioDaLocalStorage();
-    this.visaoUsuario.mostrarInformacoesUsuario(usuario);
+    try {
+      const usuario = this.usuarioRepositorio.pegarUsuarioDaLocalStorage();
+      this.visaoUsuario.mostrarInformacoesUsuario(usuario);
+    } catch (erro) {
+      this.visaoUsuario.mostrarMensagemDeErro(
+        "Erro ao carregar usuário, tente novamente mais tarde."
+      );
+    }
   };
 
   carregarCompras = async () => {
     try {
       const compras = await this.usuarioRepositorio.retornaComprasDoUsuario();
       this.visaoUsuario.mostrarCompras(compras);
-    } catch (erro) {}
+    } catch (erro) {
+      this.visaoUsuario.mostrarMensagemDeErro(
+        "Erro ao carregar compras, tente novamente mais tarde."
+      );
+    }
   };
 
   carregarGrafico = async () => {
     try {
       const compras = await this.usuarioRepositorio.retornaComprasDoUsuario();
       this.visaoUsuario.criarGraficoCompras(compras);
-    } catch (erro) {}
+    } catch (erro) {
+      this.visaoUsuario.mostrarMensagemDeErro(
+        "Erro ao carregar gráfico, tente novamente mais tarde."
+      );
+    }
   };
 
   atualizarBadgeCarrinho = () => {
