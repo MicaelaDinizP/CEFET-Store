@@ -31,9 +31,7 @@ export class ControladoraProdutoEmDetalhes {
     try {
       const produto = await this.produtoRepositorio.obterPorId(id);
       this.visaoProdutoEmDetalhes.montarDetalhamento(produto);
-    } catch (erro) {
-      //Util.mostrarMensagem("Erro ao carregar o produto. " + erro);
-    }
+    } catch (erro) {}
   };
 
   adicionarAoCarrinho = async () => {

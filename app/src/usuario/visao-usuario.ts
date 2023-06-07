@@ -6,7 +6,6 @@ export class VisaoUsuario {
     const matricula = document.getElementById("matricula");
     const nome = document.getElementById("nome-completo");
     const saldo = document.getElementById("saldo");
-    console.log(usuario);
     matricula!.innerHTML = usuario.matricula;
     nome!.innerHTML = usuario.nome;
     saldo!.innerHTML = usuario.saldo.toString();
@@ -38,7 +37,6 @@ export class VisaoUsuario {
       produtosList.classList.add("demo-list-two", "mdl-list");
 
       compra.produtos.forEach((produto) => {
-        console.log(produto);
         const produtoItem = document.createElement("li");
         produtoItem.classList.add("mdl-list__item", "mdl-list__item--two-line");
 

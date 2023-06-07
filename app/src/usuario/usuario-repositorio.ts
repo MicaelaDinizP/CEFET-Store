@@ -27,7 +27,6 @@ export class UsuarioRepositorio {
       }
     });
     const respostaJson = await resposta.json();
-    console.log(respostaJson);
     if (respostaJson) {
       return respostaJson;
     } else {

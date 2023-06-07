@@ -36,10 +36,7 @@ export class ControladoraUsuario {
 
   carregarCompras = async () => {
     try {
-      console.log("carregarCompras");
       const compras = await this.usuarioRepositorio.retornaComprasDoUsuario();
-      console.log("compras");
-      console.log(compras);
       this.visaoUsuario.mostrarCompras(compras);
     } catch (erro) {}
   };

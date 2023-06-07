@@ -33,7 +33,6 @@ export class ControladoraUsuarioEmAutenticacao {
         }
       } catch (error) {
         this.visaoUsuarioEmAutenticacao.mostrarErro();
-        console.error(error);
       }
     }
   };
