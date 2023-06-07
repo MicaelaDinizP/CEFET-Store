@@ -8,7 +8,8 @@ require_once("./src/usuario-service.php");
 
 describe("VendaService", function() {
     beforeAll(function() {
-        $this->servicoVenda = new VendaService();
+        $this->servicoUsuario = new ServicoUsuario();
+        $this->servicoVenda = new VendaService($this->servicoUsuario);
         $this->produtoUm = new Produto('descricao',100.00,'22-02-2023','detalhes',2,0,'categoria','imagem',null,1);
         $this->produtoDois = new Produto('descricao2',200.00,'22-03-2023','detalhes2',1,0,'categoria2','imagem2',null,2);
         $this->arrayProdutos = [];

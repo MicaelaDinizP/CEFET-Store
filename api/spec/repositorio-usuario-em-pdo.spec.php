@@ -68,7 +68,7 @@ describe("RepositorioUsuarioEmPDO", function() {
             expect($usuarioObtido->getMatricula())->toBe("123456");
             expect($usuarioObtido->getNome())->toBe("Meg");
             expect($usuarioObtido->getEmail())->toBe("meg@email.com");
-            expect($usuarioObtido->getSenha())->toBe("12345");
+            expect($usuarioObtido->getSenha())->toBe("\$2y\$10\$wvFSnLEh8CIou5spiT5W6.8R2j1iH1UD/ekaMGKR7hvOErYUKHkJO");
             expect($usuarioObtido->getSaldo())->toBe(400.00);
             expect($usuarioObtido->getId())->toBe(1);
          });

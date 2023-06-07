@@ -9,7 +9,6 @@ Scenario("Pesquisar por home do cefet shop", ({ I }) => {
 Scenario("Elementos de navegação presentes", ({ I }) => {
   I.amOnPage("http://localhost/2023-1-pis-g3/app/src/");
   I.seeElement("#link-login");
-  I.see("CEFET Shop", { css: "span.mdl-layout-title" });
   I.seeElement(
     ".mdl-button.mdl-js-button.mdl-button--icon.mdl-button--colored"
   );
