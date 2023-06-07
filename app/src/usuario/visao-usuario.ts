@@ -106,7 +106,54 @@ export class VisaoUsuario {
     window.location.href = "http://localhost/2023-1-pis-g3/app/src/index.html";
   };
 
-  criarGraficoCompras = (compras: Compra[]) => {};
+  criarGraficoCompras = (compras: Compra[]) => {
+    const valoresTotais: { [ano: string]: number } = {};
+    compras.forEach((compra) => {
+      const ano = compra.dataVenda.split("-")[0];
+      if (valoresTotais[ano]) {
+        valoresTotais[ano] += compra.valorTotal;
+      } else {
+        valoresTotais[ano] = compra.valorTotal;
+      }
+    });
+
+    const canvas = document.getElementById(
+      "grafico-compras"
+    ) as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+
+    if (ctx) {
+      // @ts-ignore
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: Object.keys(valoresTotais),
+          datasets: [
+            {
+              label: "Valor Total Comprado (C$)",
+              data: Object.values(valoresTotais),
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function (value: number) {
+                  return "C$ " + value.toFixed(2);
+                }
+              }
+            }
+            // @ts-ignore
+          } as Chart.ChartScales
+        }
+      });
+    }
+  };
 
   mostrarUsuarioLogado = () => {
     const linkLogin = document.getElementById(

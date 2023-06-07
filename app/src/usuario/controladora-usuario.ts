@@ -20,13 +20,13 @@ export class ControladoraUsuario {
   iniciar = () => {
     this.carregarUsuario();
     this.carregarCompras();
-    // this.carregarGrafico();
     this.atualizarBadgeCarrinho();
     if (this.controladoraUsuarioEmAutenticacao.estaLogado()) {
       this.visaoUsuario.mostrarUsuarioLogado();
     } else {
       this.visaoUsuario.mostrarUsuarioDeslogado();
     }
+    this.carregarGrafico();
   };
 
   carregarUsuario = () => {
@@ -44,12 +44,12 @@ export class ControladoraUsuario {
     } catch (erro) {}
   };
 
-  // carregarGrafico = async () => {
-  //   try {
-  //     const compras = await this.usuarioRepositorio.retornaComprasDoUsuario();
-  //     this.visaoUsuario.criarGraficoCompras(compras);
-  //   } catch (erro) {}
-  // };
+  carregarGrafico = async () => {
+    try {
+      const compras = await this.usuarioRepositorio.retornaComprasDoUsuario();
+      this.visaoUsuario.criarGraficoCompras(compras);
+    } catch (erro) {}
+  };
 
   atualizarBadgeCarrinho = () => {
     const quantidadeProdutos =
