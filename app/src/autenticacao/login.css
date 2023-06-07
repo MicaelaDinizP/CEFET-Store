@@ -2,6 +2,11 @@ main {
   display: flex !important;
 }
 
+.link-navegacao {
+  color: white !important;
+  text-decoration: none;
+}
+
 .container-login {
   margin-top: 1rem !important;
   justify-content: center; /* centraliza na horizontal */
