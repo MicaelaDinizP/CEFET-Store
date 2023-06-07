@@ -205,4 +205,20 @@ export class VisaoUsuario {
       badgeCarrinho!.classList.remove("mdl-badge");
     }
   }
+
+  mostrarMensagemDeErroUsuarioDeslogado = () => {
+    console.log("ENTROU");
+    const dadosUsuario = document.querySelector(
+      ".dados-usuario"
+    ) as HTMLElement;
+    dadosUsuario.style.display = "none";
+    const pedidos = document.querySelector(
+      ".pedidos-realizados"
+    ) as HTMLElement;
+    pedidos.style.display = "none";
+    const grafico = document.getElementById("grafico") as HTMLElement;
+    grafico.style.display = "none";
+    const mensagem = document.querySelector(".mensagem-erro") as HTMLElement;
+    mensagem.style.display = "block";
+  };
 }

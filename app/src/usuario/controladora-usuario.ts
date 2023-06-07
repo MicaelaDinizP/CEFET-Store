@@ -18,15 +18,19 @@ export class ControladoraUsuario {
   }
 
   iniciar = () => {
-    this.carregarUsuario();
-    this.carregarCompras();
-    this.atualizarBadgeCarrinho();
+    console.log(this.controladoraUsuarioEmAutenticacao.estaLogado());
     if (this.controladoraUsuarioEmAutenticacao.estaLogado()) {
+      this.carregarUsuario();
+      this.carregarCompras();
+      this.atualizarBadgeCarrinho();
       this.visaoUsuario.mostrarUsuarioLogado();
+      this.carregarGrafico();
     } else {
+      console.log("nao logado");
       this.visaoUsuario.mostrarUsuarioDeslogado();
+      this.atualizarBadgeCarrinho();
+      this.visaoUsuario.mostrarMensagemDeErroUsuarioDeslogado();
     }
-    this.carregarGrafico();
   };
 
   carregarUsuario = () => {
