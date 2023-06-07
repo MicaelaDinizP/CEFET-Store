@@ -69,12 +69,30 @@ export class VisaoProdutoEmDetalhes {
   };
 
   atualizarBadgeCarrinho(quantidade: number) {
-    const badgeCarrinho = document.querySelector(".mdl-badge");
-    badgeCarrinho!.setAttribute("data-badge", quantidade.toString());
+    let badgeCarrinho = document.querySelector(".mdl-badge");
+
+    if (!badgeCarrinho) {
+      const badgeElement = document.createElement("div");
+      badgeElement.className = "mdl-badge";
+      badgeElement.setAttribute("data-badge", quantidade.toString());
+
+      const badgeContainer = document.querySelector(".badge-container");
+
+      if (badgeContainer) {
+        badgeContainer.appendChild(badgeElement);
+        badgeCarrinho = badgeElement;
+      } else {
+        return;
+      }
+    }
+
+    badgeCarrinho.setAttribute("data-badge", quantidade.toString());
+
     if (quantidade < 1) {
-      badgeCarrinho!.classList.remove("mdl-badge");
+      badgeCarrinho.classList.remove("mdl-badge");
     }
   }
+
   realizarLogout = () => {
     localStorage.removeItem("usuario");
     window.location.href = "http://localhost/2023-1-pis-g3/app/src/index.html";
