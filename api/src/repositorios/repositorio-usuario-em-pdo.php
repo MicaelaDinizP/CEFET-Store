@@ -24,7 +24,7 @@ class RepositorioUsuarioEmPDO implements RepositorioUsuario {
             $usuarioObtido = $ps->fetch();
             if (!password_verify( $usuario->getSenha(), $usuarioObtido['senha'])) {
                 return false;
-            }    
+            } 
             $usuario->setId(intval($usuarioObtido['id']));
             $usuario->setMatricula($usuarioObtido['matricula']);
             $usuario->setNome($usuarioObtido['nome']);
