@@ -22,7 +22,7 @@ class RepositorioUsuarioEmPDO implements RepositorioUsuario {
                 return null;
             }  
             $usuarioObtido = $ps->fetch();
-            if($usuario->getSenha() !== $usuarioObtido['senha']) {
+            if (!password_verify( $usuario->getSenha(), $usuarioObtido['senha'])) {
                 return false;
             }    
             $usuario->setId(intval($usuarioObtido['id']));
