@@ -1,5 +1,5 @@
-import { Produto } from "./produto.js";
-import { ProdutoErro } from "./produto-erro.js";
+import { Produto } from "./produto";
+import { ProdutoErro } from "./produto-erro";
 import { API_MAIS_VENDIDOS, API_PRODUTOS, API_PRODUTO } from "../rotas";
 export class ProdutoRepositorio {
   obterTodos = async (paginaEscolhida: number) => {
