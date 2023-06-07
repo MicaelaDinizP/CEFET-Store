@@ -29,31 +29,10 @@ export class VisaoUsuarioEmAutenticacao {
     }
   };
 
-  mostrarUsuarioLogado = () => {
-    const linkLogin = document.getElementById(
-      "link-login"
-    ) as HTMLAnchorElement;
-    linkLogin.innerText = "Logout";
-  };
-
-  mostrarUsuarioDeslogado = () => {
-    const linkLogin = document.getElementById(
-      "link-login"
-    ) as HTMLAnchorElement;
-    linkLogin.innerText = "Login";
-  };
-
   iniciar(callback: () => void) {
     const botaoLogin = document.getElementById("botao-login");
     if (botaoLogin) {
       botaoLogin.addEventListener("click", callback);
-    }
-  }
-
-  sair(callback: () => void) {
-    const linkLogin = document.getElementById("link-login");
-    if (linkLogin && linkLogin.innerText === "Logout") {
-      linkLogin.addEventListener("click", callback);
     }
   }
 }

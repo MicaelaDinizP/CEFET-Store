@@ -39,7 +39,6 @@ export class ControladoraUsuarioEmAutenticacao {
 
   realizarLogout = () => {
     this.autenticacaoRepositorio.deslogar();
-    this.visaoUsuarioEmAutenticacao.mostrarUsuarioDeslogado();
   };
 
   estaLogado = () => {
