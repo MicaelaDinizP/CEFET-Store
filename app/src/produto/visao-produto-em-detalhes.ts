@@ -37,9 +37,9 @@ export class VisaoProdutoEmDetalhes {
           </div>
           <div class="mdl-card__supporting-text">
             <p>Data de lançamento: ${produto.lancamento}</p>
-            <p>Preço de venda: R$ ${produto.precoDeVenda}</p>
+            <p>Preço de venda: C$ ${produto.precoDeVenda}</p>
             <p>Percentual de desconto: ${produto.taxaDesconto}%</p>
-            <p>Preço com desconto: R$ ${produto.precoDesconto}</p>
+            <p>Preço com desconto: C$ ${produto.precoDesconto}</p>
             <p>Detalhes sobre o produto: ${produto.detalhes}</p>
             <p>Quantidade em estoque: ${produto.quantidade}</p>
           </div>

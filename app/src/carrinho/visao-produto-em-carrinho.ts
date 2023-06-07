@@ -80,9 +80,9 @@ export class VisaoProdutoEmCarrinho {
 
       const celulaPrecoProduto = document.createElement("td");
       if (item.taxaDesconto > 0) {
-        celulaPrecoProduto.textContent = `R$ ${item.precoDesconto}`;
+        celulaPrecoProduto.textContent = `C$ ${item.precoDesconto}`;
       } else {
-        celulaPrecoProduto.textContent = `R$ ${item.precoDeVenda}`;
+        celulaPrecoProduto.textContent = `C$ ${item.precoDeVenda}`;
       }
 
       const celulaQuantidadeProduto = document.createElement("td");
@@ -130,7 +130,7 @@ export class VisaoProdutoEmCarrinho {
     footerSubtotalLabel.textContent = "Subtotal";
     const footerSubtotalValor = document.createElement("td");
     footerSubtotalValor.classList.add("subtotal");
-    footerSubtotalValor.textContent = `R$ ${subtotal.toFixed(2)}`;
+    footerSubtotalValor.textContent = `C$ ${subtotal.toFixed(2)}`;
 
     footerRow.appendChild(footerCelulaVazia);
     footerRow.appendChild(footerSubtotalLabel);
@@ -168,7 +168,7 @@ export class VisaoProdutoEmCarrinho {
       document.querySelector(".subtotal")!.textContent;
 
     if (typeof subtotal === "string") {
-      subtotal = subtotal.replace("R$", "").trim();
+      subtotal = subtotal.replace("C$", "").trim();
     }
     return Number(subtotal);
   };
@@ -182,7 +182,6 @@ export class VisaoProdutoEmCarrinho {
       controladoraProdutoEmCarrinho.finalizarCompra();
     });
   };
-
 
   mostrarUsuarioDeslogado = () => {
     const linkLogin = document.getElementById(

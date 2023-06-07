@@ -87,12 +87,12 @@ export class VisaoProdutoEmTodos {
 
         let precoOriginal = document.createElement("div");
         precoOriginal.setAttribute("class", "preco-original");
-        precoOriginal.append(`R$ ${produto.precoDeVenda}`);
+        precoOriginal.append(`C$ ${produto.precoDeVenda}`);
         cardPreco.appendChild(precoOriginal);
 
         let precoDesconto = document.createElement("div");
         precoDesconto.setAttribute("class", "preco-desconto");
-        precoDesconto.append(`R$ ${produto.precoDesconto}`);
+        precoDesconto.append(`C$ ${produto.precoDesconto}`);
         cardPreco.appendChild(precoDesconto);
 
         let taxaDesconto = document.createElement("div");
@@ -105,7 +105,7 @@ export class VisaoProdutoEmTodos {
           "class",
           "mdl-card__supporting-text preco-produto"
         );
-        cardPreco.append(`R$ ${produto.precoDeVenda}`);
+        cardPreco.append(`C$ ${produto.precoDeVenda}`);
       }
 
       let cardBotaoDiv = card.appendChild(document.createElement("div"));
