@@ -7,3 +7,4 @@
 # Para instalar as dependências do composer navegue até o diretório 'api' e execute 'composer install';
 
 # Para executar os testes da API com o kahlan navegue até o diretório 'api' e execute 'composer test'.
+# Function usada para gerar o hash cadastrado no banco: $hashSenha = password_hash("12345", PASSWORD_DEFAULT); 
