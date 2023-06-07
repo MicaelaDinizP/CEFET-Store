@@ -23,3 +23,14 @@ a {
   justify-content: space-around;
   padding: 1rem;
 }
+
+.mensagem-erro {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  height: fit-content;
+}
