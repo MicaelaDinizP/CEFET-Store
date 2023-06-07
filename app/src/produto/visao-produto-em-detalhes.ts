@@ -75,17 +75,48 @@ export class VisaoProdutoEmDetalhes {
       badgeCarrinho!.classList.remove("mdl-badge");
     }
   }
+  realizarLogout = () => {
+    localStorage.removeItem("usuario");
+    window.location.href = "http://localhost/2023-1-pis-g3/app/src/index.html";
+  };
+
   mostrarUsuarioLogado = () => {
     const linkLogin = document.getElementById(
       "link-login"
     ) as HTMLAnchorElement;
-    linkLogin.innerText = "Logout";
-    linkLogin.addEventListener("click", (e) => {
-      e.preventDefault();
-      localStorage.removeItem("usuario");
-      window.location.href =
-        "http://localhost/2023-1-pis-g3/app/src/index.html";
-    });
+    linkLogin.href = "#";
+    const usuario = JSON.parse(localStorage.getItem("usuario")!);
+
+    if (usuario) {
+      linkLogin.innerText = `Olá, ${usuario.nome}!`;
+
+      const dropdownButton = document.createElement("button");
+      dropdownButton.id = "user-dropdown";
+      dropdownButton.className = "mdl-button mdl-js-button mdl-button--icon";
+      dropdownButton.innerHTML = `
+        <i class="material-icons">arrow_drop_down</i>
+      `;
+
+      const dropdownMenu = document.createElement("ul");
+      dropdownMenu.className =
+        "mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect";
+      dropdownMenu.setAttribute("for", "user-dropdown");
+      dropdownMenu.innerHTML = `
+        <li class="mdl-menu__item"><a href="http://localhost/2023-1-pis-g3/app/src/usuario/usuario.html">Sua conta</a></li>
+        <li class="mdl-menu__item"><a href="#" id="logout-link">Sair</a></li>
+      `;
+
+      linkLogin.appendChild(dropdownButton);
+      linkLogin.appendChild(dropdownMenu);
+
+      // Chama a função realizarLogout quando o link de logout for clicado
+      const logoutLink = document.getElementById("logout-link");
+
+      logoutLink!.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.realizarLogout();
+      });
+    }
   };
 
   mostrarUsuarioDeslogado = () => {
